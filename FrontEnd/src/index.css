@@ -1,0 +1,21 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.hero {
+  width: 100%;
+  height: 100vh;
+  background-image: url("https://images6.alphacoders.com/427/427470.jpg");
+  object-fit: cover;
+  background-size: cover;
+  background-position: center;
+}
+
+.footer {
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  position: fixed;
+}

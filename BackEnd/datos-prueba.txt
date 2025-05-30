@@ -1,0 +1,111 @@
+------------------------------------------------------------------
+USERS (uno admin, otro user para probar el jwt y la autorizacion)
+------------------------------------------------------------------
+
+{
+    "name": "Mateo",
+    "email": "mateo@gmail.com",
+    "password": "mateito123",
+    "role": "admin"
+}
+
+{
+    "name": "Lucas",
+    "email": "lucas@gmail.com",
+    "password": "lucas123",
+    "role": "user"
+}
+
+------------------------------------------------------------------
+ORIGENES (3 origenes distintos)
+------------------------------------------------------------------
+{
+    "country": "Etiopía",
+    "region": "África Oriental",
+    "climate": "Templado tropical con lluvias estacionales",
+    "description": "Café de sabor afrutado, floral y complejo, considerado el origen del café"
+}
+
+{
+    "country": "Colombia",
+    "region": "Sudamérica",
+    "climate": "Tropical en la costa y selvas, templado en zonas altas",
+    "description": "Cafés suaves y aromaticos con toques amargos"
+}
+
+{
+    "country": "Yemen",
+    "region": "Península Arábiga",
+    "climate": "Árido con zonas montañosas frescas",
+    "description": "Café con notas terrosas, especiadas y vino tinto; uno de los más antiguos y exóticos del mundo"
+}
+
+------------------------------------------------------------------
+CAFES (2 x ORIGEN)
+------------------------------------------------------------------
+
+------------------
+ORIGEN: Colombia
+------------------
+{
+    "name": "Colombia Supremo",
+    "description": "Café de grano grande y uniforme, reconocido por su sabor balanceado y suave acidez.",
+    "roastLevel": "Medio",
+    "flavorNote": "Caramelo, nuez, chocolate con un toque cítrico",
+    "image": "cafe-colombia-01.jpg",
+    "origin": "(ID)"
+}
+
+{
+    "name": "Colombia Excelso",
+    "description": "Café de alta calidad con acidez brillante y cuerpo medio, ideal para métodos filtrados.",
+    "roastLevel": "Claro",
+    "flavorNote": "Frutas cítricas, azúcar morena, notas florales",
+    "image": "cafe-colombia-02.jpg",
+    "origin": "(ID)"
+}
+
+------------------
+ORIGEN: Yemen
+------------------
+
+{
+    "name": "Yemen Mocha Matari",
+    "description": "Café exótico y antiguo, cultivado en terrazas montañosas con métodos tradicionales.",
+    "roastLevel": "Oscuro",
+    "flavorNote": "Vino tinto, especias, chocolate amargo",
+    "image": "cafe-yemen-01.jpg",
+    "origin": "(ID)"
+}
+
+{
+    "name": "Yemen Haraaz",
+    "description": "Café de altura con sabor intenso, producido artesanalmente en la región de Haraaz.",
+    "roastLevel": "Medio",
+    "flavorNote": "Pasas, dátiles, toques de cuero y flores secas",
+    "image": "cafe-yemen-02.jpg",
+    "origin": "(ID)"
+}
+
+------------------
+ORIGEN: Etiopia
+------------------
+
+{
+    "name": "Etiopía Yirgacheffe",
+    "description": "Café etíope de renombre mundial, conocido por su perfil limpio y afrutado.",
+    "roastLevel": "Claro",
+    "flavorNote": "Jazmín, limón, té negro",
+    "image": "cafe-etiopia-01.jpg",
+    "origin": "(ID)"
+}
+
+{
+    "name": "Etiopía Sidamo",
+    "description": "Café cultivado en las tierras altas del sur de Etiopía, con gran complejidad de sabores.",
+    "roastLevel": "Medio",
+    "flavorNote": "Frutas rojas, lavanda, chocolate suave",
+    "image": "cafe-etiopia-02.jpg",
+    "origin": "(ID)"
+}
+

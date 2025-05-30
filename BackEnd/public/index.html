@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentación API Café</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Prism.js (resaltado de sintaxis) -->
+    <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-markup.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-css.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js"></script>
+
+</head>
+<header class="bg-dark text-white py-3">
+    <nav class="container d-flex justify-content-between align-items-center">
+        <h1 class="pt-3 text-center flex-grow-1">Documentación de la API de Cafés</h1>
+    </nav>
+
+    <!-- Navbar de Bootstrap -->
+    <nav class="navbar navbar-expand navbar-dark bg-dark mt-3">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+                aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-center" id="navbarContent">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#jwt">JWT</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#endpoints">Endpoints</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#filtrado">Filtros</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<div class="d-flex justify-content-center align-items-center">
+    <section class="container p-5 docs">
+        <h2 class="text-center">Bienvenido a la documentación para la API de Cafés</h2>
+        <p class="mb-5 text-center">API REST realizada con Node.js, Express y MongoDB</p>
+
+        <!--jwt-->
+        <div id="jwt" class="p-5 docs">
+            <h2 class="text-center">JWT</h2>
+            <p class="mb-5 text-center">Esta API Rest utiliza JSON Web Token para proteger los endpoints y que no
+                cualquier persona pueda modificar la base de datos</p>
+
+            <h3 class="text-center mb-5">Pasos a seguir para utilizar JWT</h3>
+            <ol class="row">
+                <li class="col-12 col-lg-4"><span class="fw-bold">Crear un usuario en la base de datos</span>
+                    <p class="mt-2">Con el servidor prendido, accede a <span
+                            class="fw-bold">localhost:PUERTO/api/users</span> mediante el método POST (con POSTMAN)
+                    </p>
+                    <p>Luego envia un objeto JSON con el siguiente formato.</p>
+                    <div>
+                        <pre><code class="codigo-html">
+                            <div>
+                            {
+                                "name": "Mateo",
+                                "email": "mateo.fiorotto@davinci.edu.ar",
+                                "password": "claveSecreta123"
+                                "role": "admin" 
+                            }
+                            </div>
+                            </code></pre>
+                    </div>
+                    <p><span class="fw-bold text-decoration-underline">NOTA:</span> Si quieres usar los métodos como POST, PUT Y DELETE deberas crear un usuario con rol admin. Por defecto es user.</p>
+                </li>
+                <li class="col-12 col-lg-4"><span class="fw-bold">Obtener Token</span>
+                    <p class="mt-2">Una vez creado el usuario, puedes chequearlo en <span
+                            class="fw-bold">localhost:PUERTO/api/users</span>.</p>
+                    <p>Luego deberas loguearte mediante el método POST en <span
+                            class="fw-bold">localhost:PUERTO/api/users/login</span>. Acá vas a tener que mandar por
+                        el body el email y la contraseña</p>
+                    <pre><code class="codigo-html">
+                            <div>
+                            {
+                                "email": "mateo.fiorotto@davinci.edu.ar",
+                                "password": "claveSecreta123"
+                            }
+                            </div>
+                            </code></pre>
+                    <p>El token será devuelto por Postman y en la consola de la app.</p>
+
+
+                </li>
+                <li class="col-12 col-lg-4"><span class="fw-bold">Utilizar el Token</span>
+                    <p>Podes usar el token obtenido para acceder a los endpoints de la API Rest mediante POSTMAN</p>
+                    <pre><code class="codigo-html">
+                            <div>
+                                eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODA1NWI4NTgyZmMyMDg4OWE2NGYxY2MiLCJuYW1lIjoiTHVjYXMiLCJpYXQiOjE3NDUxODE2MjUsImV4cCI6MTc0NTE4NTIyNX0.8SejHpHJIBqM8qJt8JJYGAK7Z7Sv8wjX5Du5Cl-aypw
+                            </div>
+                            </code></pre>
+                    <p>Para ello, en "Authorization" marca el tipo de validación como "Bearer" y pega el token</p>
+                    <p>¡Listo! Ya podes probar los endpoints (solo siendo admin).</p>
+                </li>
+            </ol>
+
+
+        </div>
+
+        <!--usos-->
+        <div id="endpoints" class="p-5 docs">
+            <h2 class="text-center">Endpoints</h2>
+            <p class="mb-2 text-center">¿Como usar los endpoints como POST, GET, PUT Y DELETE?</p>
+            <p class="mb-5 text-center">PD: En el <a class="fw-bold" href="https://github.com/mateofiorotto/API_cafes_express" target="_blank rel=noopener noreferrer">repositorio</a> hay un archivo llamado datos-prueba.txt donde hay archivos json para probar los endpoints sin escribir a mano</p>
+
+            <!-- Sección Cafés -->
+            <div class="row justify-content-center align-items-center">
+                <h3 class="text-center"><i class="bi bi-cup-hot-fill me-2"></i>Cafés</h3>
+
+                <div class="col-12 col-lg-4 p-4">
+                    <h4 class="text-center"><a href="/api/coffees">GET - /api/coffees</a></h4>
+                    <p class="text-center">Obtener todos los cafés</p>
+                    <p><span class="fw-bold text-decoration-underline">NOTA</span>: Este endpoint es público, asi
+                        que no es necesario que estes logueado y tengas el token.</p>
+                </div>
+
+                <div class="col-12 col-lg-4 p-4">
+                    <h4 class="text-center"><a href="/api/coffees/:id">GET - /api/coffees/:id</a></h4>
+                    <p class="text-center">Obtener un café especificando su ID</p>
+                    <p><span class="fw-bold text-decoration-underline">NOTA</span>: Este endpoint es público, asi
+                        que no es necesario que estes logueado y tengas el token.</p>
+                </div>
+
+                <div class="col-12 col-lg-4 p-4">
+                    <h4 class="text-center"><a href="/api/coffees/:id">DELETE - /api/coffees/:id</a></h4>
+                    <p class="text-center">Elimina un café especificando su ID</p>
+                    <p><span class="fw-bold text-decoration-underline">NOTA</span>: Este endpoint es privado, asi
+                        que debes estar logueado y con un token para utilizarlo.</p>
+                </div>
+
+                <div class="row justify-content-center align-items-center">
+                    <div class="col-12 col-lg-6 p-4">
+                        <h4 class="text-center"><a href="/api/coffees">POST - /api/coffees</a></h4>
+                        <p class="text-center">Crea un nuevo café en la base de datos. Deberas enviar un <span
+                                class="fw-bold">JSON</span> como el siguiente mediante Postman.</p>
+                        <pre><code class="codigo-html">
+                            <div>
+                                {
+                                    "name": "Colombia Supremo",
+                                    "description": "Café de grano grande y uniforme, reconocido por su sabor balanceado",
+                                    "roastLevel": "Medio",
+                                    "flavorNote": "Caramelo, nuez, chocolate",
+                                    "image": "imagen.png",
+                                    "origin": "68050c40bd6a8c9fb5e20f01"
+                                }
+                            </div>
+                            </code></pre>
+                        <p><span class="fw-bold text-decoration-underline">NOTA</span>: debes crear primero un
+                            origen en
+                            la base de datos para relacionarlo con el café. Es un endpoint que requiere autorización
+                            mediante JWT.</p>
+                    </div>
+
+                    <div class="col-12 col-lg-6 p-4">
+                        <h4 class="text-center"><a href="/api/coffees/:id">PUT - /api/coffees/:id</a></h4>
+                        <p class="text-center">Actualiza un café en la base de datos. Deberas enviar un <span
+                                class="fw-bold">JSON</span> como el siguiente mediante Postman.</p>
+                        <pre><code class="codigo-html">
+                        <div>
+                            {
+                                "name": "Colombia Clásico",
+                                "description": "Café de grano grande y uniforme, reconocido por su sabor balanceado y amargura",
+                                "roastLevel": "Oscuro",
+                                "flavorNote": "Amargo, chocolate",
+                                "image": "imagen2.png",
+                                "origin": "68050c40bd6a8c9fb5e20f01"
+                            }
+                        </div>
+                        </code></pre>
+                        <p><span class="fw-bold text-decoration-underline">NOTA</span>: debes tener el id del café
+                            que quieres editar y también el id del origen por si lo queres editar. Es un endpoint
+                            que requiere autorización mediante
+                            JWT. No hace falta mandar todos los campos.</p>
+                    </div>
+                </div>
+
+
+                <!-- Sección Orígenes -->
+                <div class="row justify-content-center align-items-center mt-5">
+                    <h3 class="text-center"><i class="bi bi-globe-americas me-2"></i>Orígenes</h3>
+                    <div class="col-12 col-lg-4 col-xl-4 p-4">
+                        <h4 class="text-center"><a href="/api/origins">GET - /api/origins</a></h4>
+                        <p class="text-center">Obtener todos los orígenes</p>
+                        <p><span class="fw-bold text-decoration-underline">NOTA</span>: Este endpoint es público,
+                            asi que no es necesario que estes logueado y tengas el token.</p>
+                    </div>
+
+                    <div class="col-12 col-lg-4 col-xl-4 p-4">
+                        <h4 class="text-center"><a href="/api/origins/:id">GET - /api/origins/:id</a></h4>
+                        <p class="text-center">Obtener un origen por su ID</p>
+                        <p><span class="fw-bold text-decoration-underline">NOTA</span>: Este endpoint es público,
+                            asi que no es necesario que estes logueado y tengas el token.</p>
+                    </div>
+
+                    <div class="col-12 col-lg-4 col-xl-4 p-4">
+                        <h4 class="text-center"><a href="/api/origins/:id">DELETE - /api/origins/:id</a></h4>
+                        <p class="text-center">Elimina un origen existente de la base de datos</p>
+                        <p><span class="fw-bold text-decoration-underline">NOTA</span>: Este endpoint es privado,
+                            asi
+                            que debes estar logueado y con un token para utilizarlo.</p>
+                    </div>
+                </div>
+
+                <div class="row justify-content-center align-items-center">
+                    <div class="col-12 col-lg-6 p-4">
+                        <h4 class="text-center"><a href="/api/origins">POST - /api/origins</a></h4>
+                        <p class="text-center">Crea un nuevo origen en la base de datos. Deberas enviar un <span
+                                class="fw-bold">JSON</span> como el siguiente mediante Postman.</p>
+                        <pre><code class="codigo-html">
+                            <div>
+                                {
+                                    "country": "Colombia",
+                                    "region": "Sudamérica",
+                                    "climate": "Tropical en la costa y selvas, templado en zonas altas",
+                                    "description": "Cafés suaves y aromaticos"
+                                }
+                            </div>
+                            </code></pre>
+                        <p><span class="fw-bold text-decoration-underline">NOTA</span>: debes crear primero un
+                            origen en la base de datos para relacionarlo con el café. Requiere auth JWT.</p>
+                    </div>
+
+                    <div class="col-12 col-lg-6 p-4">
+                        <h4 class="text-center"><a href="/api/origins/:id">PUT - /api/origins/:id</a></h4>
+                        <p class="text-center">Actualiza un origen en la base de datos. Deberas enviar un <span
+                                class="fw-bold">JSON</span> como el siguiente mediante Postman.</p>
+                        <pre><code class="codigo-html">
+                        <div>
+                            {
+                                "country": "Etiopía",
+                                "region": "África Oriental",
+                                "climate": "Templado tropical con lluvias estacionales",
+                                "description": "Café de sabor afrutado, floral y complejo, considerado el origen del café"
+                            }
+                        </div>
+                        </code></pre>
+                        <p><span class="fw-bold text-decoration-underline">NOTA</span>: debes tener el id del origen
+                            que quieres editar. Requiere autorización mediante
+                            JWT. No hace falta mandar todos los campos.</p>
+                    </div>
+                </div>
+
+            </div>
+    </section>
+</div>
+
+<div id="filtrado" class="p-5 docs">
+    <h2 class="text-center">Filtros</h2>
+    <p class="mb-5 text-center">¿Como utilizar los filtros?</p>
+    <p class="text-center ms-5 me-5 pe-5 ps-5">Los filtros que se armaron para la app no distinguen entre mayusculas y
+        minusculas, a su vez, usan expresiones regulares por lo que si escribis el nombre de forma incompleta de un
+        origen, tostado o nombre por ejemplo, es posible que te devuelva un resultado (si existe).</p>
+
+    <div class="row justify-content-center align-items-center">
+        <div class="col-12 col-lg-4 p-4">
+            <h3 class="text-center">Busqueda por nombre</h3>
+            <h4 class="text-center"><a href="/api/coffees?name=supremo">GET - /api/coffees?name=nombre</a></h4>
+            <p class="text-center">Busca por nombre mandando por query el nombre del café. Incluido en el endpoint
+                getCoffees.</p>
+            <p class="text-center"><span class="fw-bold text-decoration-underline">EJEMPLO</span>:
+                localhost:PUERTO/api/coffees?name=supremo</p>
+        </div>
+
+        <div class="col-12 col-lg-4 p-4">
+            <h3 class="text-center">Filtrar por nivel de tostado</h3>
+            <h4 class="text-center"><a href="/api/coffees?roastLevel=medio">GET - /api/coffees?roastLevel=nivel</a></h4>
+            <p class="text-center">Busca por nombre mandando por query el nivel de tostado. Incluido en el endpoint
+                getCoffees.</p>
+            <p class="text-center"><span class="fw-bold text-decoration-underline">EJEMPLO</span>:
+                localhost:PUERTO/api/coffees?roastLevel=medio</p>
+        </div>
+
+        <div class="col-12 col-lg-4 p-4">
+            <h3 class="text-center">Busqueda por nombre</h3>
+            <h4 class="text-center"><a href="/api/coffees?origin=colombia">GET - /api/coffees?origin=origen</a></h4>
+            <p class="text-center">Busca por nombre mandando por query el origen del café. Incluido en el endpoint
+                getCoffees.</p>
+            <p class="text-center"><span class="fw-bold text-decoration-underline">EJEMPLO</span>:
+                localhost:PUERTO/api/coffees?origin=colombia</p>
+        </div>
+        <p class="text-center ms-5 me-5 pe-5 ps-5">Se pueden utilizar los tres métodos a la vez, por ejemplo
+            <a href="/api/coffees?name=supremo&roastLevel=medio&origin=colombia" class="fw-bold text-center">/api/coffees?name=supremo&roastLevel=medio&origin=colombia</a>
+        </p>
+    </div>
+</div>
+
+<div class="bg-dark">
+    <footer class="container p-4">
+        <div class="row justify-content-center align-items-center mt-4">
+            <div class="col-12 col-lg-3 text-center fw-bold">
+                <p>Fiorotto Mateo</p>
+            </div>
+            <div class="col-12 col-lg-3 text-center fw-bold">
+                <p>Aplicaciones Híbridas</p>
+            </div>
+            <div class="col-12 col-lg-3 text-center fw-bold">
+                <p>Jonathan Emanuel Cruz</p>
+            </div>
+            <div class="col-12 col-lg-3 text-center fw-bold">
+                <p>DWT4AV</p>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
