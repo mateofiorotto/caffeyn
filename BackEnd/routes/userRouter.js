@@ -1,9 +1,10 @@
 import express from "express";
 const router = express.Router();
 
-import { getUsers, createUser, login, getUsersById, updateUserById, deleteUserById } from '../controllers/userController.js';
+import { getUsers, createUser, login, getUsersById, updateUserById, deleteUserById, getUserProfile } from '../controllers/userController.js';
 
 //definir rutas
+router.get('/profile', getUserProfile);
 router.get('/', getUsers );
 router.post('/', createUser );
 router.post('/login', login);

@@ -1,35 +1,32 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { AuthProvider } from "./utils/AuthContext";
-
-import Home from "./views/Home";
-import Login from "./views/Login";
-import Register from "./views/Register";
-import { PrivateRoute } from "./utils/PrivateRoute";
-import Header from "./components/Header";
-import Products from "./views/Coffees";
-import Contact from "./views/Contact";
-import Footer from "./components/Footer";
-
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+import Login from './views/Login';
+import Register from './views/Register';
+import CoffeeList from './views/Coffees';
+import OriginList from './views/Origins';
+import UserProfile from './views/UserProfile';
+import Home from './views/Home';
 
 function App() {
   return (
-    <>
-      <Header/>
-     
-      
-
-      {/*  En está sección vamos a mostrar las vista */ }
-      <Routes>
-        <Route path='/'  element={ <Home />} />
-        <Route path='/coffees' element={ <Products />} />
-        <Route path='/contact' element={ <Contact />} />
-        {/* <Route path='*' element={ <NotFound />} /> */}
-      </Routes>
-      
-      <Footer/>
-    </>
-  )
+    <Router>
+      <header>
+        <Navbar />
+      </header>
+      <main className="container mt-4">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/cafes" element={<CoffeeList />} />
+          <Route path="/origenes" element={<OriginList />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/perfil" element={<UserProfile />} />
+        </Routes>
+      </main>
+      <Footer />
+    </Router>
+  );
 }
-
 
 export default App;

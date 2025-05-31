@@ -1,76 +1,64 @@
 import { useState } from "react";
+import { register, saveToken } from "../services/auth";
 import { useNavigate } from "react-router-dom";
 
-const Register = () => {
+function Register() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    password: ""
-  });
-
-  const [error, setError] = useState("");
-
-  const handleChange = e => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = async e => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const res = await fetch("http://localhost:3000/api/auth/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData)
-      });
-
-      const data = await res.json();
-
-      if (res.ok) {
-        alert("Registro exitoso");
-        navigate("/login");
-      } else {
-        setError(data.message || "Error al registrarse");
-      }
-    } catch (err) {
-      setError("Error de conexión con el servidor");
+    const res = await register(name, email, password);
+    if (res.token) {
+      saveToken(res.token);
+      navigate("/");
+    } else {
+      setError(res.message || "Error al registrarse");
     }
   };
 
   return (
-    <div>
+    <div className="card bg-dark text-light p-4">
       <h2>Registro</h2>
-      {error && <p style={{ color: "red" }}>{error}</p>}
+      {error && <div className="alert alert-danger">{error}</div>}
       <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="name"
-          placeholder="Nombre"
-          value={formData.name}
-          onChange={handleChange}
-          required
-        /><br />
-        <input
-          type="email"
-          name="email"
-          placeholder="Correo"
-          value={formData.email}
-          onChange={handleChange}
-          required
-        /><br />
-        <input
-          type="password"
-          name="password"
-          placeholder="Contraseña"
-          value={formData.password}
-          onChange={handleChange}
-          required
-        /><br />
-        <button type="submit">Registrarse</button>
+        <div className="mb-3">
+          <label>Nombre</label>
+          <input
+            type="text"
+            className="form-control bg-dark text-light"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
+        </div>
+        <div className="mb-3">
+          <label>Email</label>
+          <input
+            type="email"
+            className="form-control bg-dark text-light"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+        </div>
+        <div className="mb-3">
+          <label>Contraseña</label>
+          <input
+            type="password"
+            className="form-control bg-dark text-light"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+        </div>
+        <button className="btn btn-success w-100">Registrarse</button>
       </form>
     </div>
   );
-};
+}
 
 export default Register;

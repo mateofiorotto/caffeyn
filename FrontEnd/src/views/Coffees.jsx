@@ -1,42 +1,35 @@
-import React from "react";
-import { useState, useEffect } from "react";
-import CardProduct from "../components/CardProduct";
+import { useEffect, useState } from 'react';
+import { fetchCafes } from '../services/api';
+import CoffeeCard from '../components/CoffeeCard';
 
 function Coffees() {
-  const [productos, setProductos] = useState([]);
-  const [logueado, setLogueado] = useState(true); // podés ponerlo en false para simular login
+  const [cafes, setCafes] = useState([]);
 
   useEffect(() => {
-    const getProducts = async () => {
-      try {
-        const res = await fetch("http://localhost:3000/api/coffees/");
-        const data = await res.json();
-        setProductos(data.data);
-      } catch (error) {
-        console.error("Error al traer productos:", error);
-      }
-    };
-
-    getProducts();
+    fetchCafes().then(setCafes);
   }, []);
+
   return (
-    <div className="container">
-      <h2>Productos</h2>
-      <div className="row">
-        
-        {productos.map((prod) => (
-          <div key={prod._id} className="col-lg-4 col-12 p-4">
-          <CardProduct
-            key={prod._id}
-            id={prod.id}
-            name={prod.name}
-            image={prod.image}
-            origin={prod.origin.country}
+    <div>
+      <h2>Cafés Disponibles</h2>
+      {cafes.length > 0 ? (
+        cafes.map((cafe) => (
+          <CoffeeCard
+            key={cafe._id}
+            name={cafe.name}
+            price={cafe.price}
+            description={cafe.description}
+            roastLevel={cafe.roastLevel}
+            flavorNote={cafe.flavorNote}
+            image={cafe.image}
+            origin={cafe.origin}
           />
-          </div>
-        ))}
-      </div>
+        ))
+      ) : (
+        <p>No hay cafés disponibles.</p>
+      )}
     </div>
   );
 }
+
 export default Coffees;
