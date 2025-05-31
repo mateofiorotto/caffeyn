@@ -13,9 +13,8 @@ function Footer() {
             <h5>Explora</h5>
             <ul className="list-unstyled">
               <li><Link to="/">Home</Link></li>
-              <li><Link to="/origenes">Orígenes</Link></li>
+              <li><Link to="/cafes">Cafés</Link></li>
               <li><Link to="/perfil">Perfil</Link></li>
-              <li><Link to="/login">Login</Link></li>
             </ul>
           </div>
           <div className="col-lg-4 col-md-12 text-center">

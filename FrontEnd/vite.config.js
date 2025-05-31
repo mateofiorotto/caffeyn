@@ -6,6 +6,6 @@ export default defineConfig({
   plugins: [react()],
   server: {
     host: true,
-    allowedHosts: ['loud-stars-invite.loca.lt'],
+    allowedHosts: ['caffeyn.loca.lt'],
   }
 })

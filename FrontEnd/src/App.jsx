@@ -4,8 +4,9 @@ import Footer from './components/Footer';
 import Login from './views/Login';
 import Register from './views/Register';
 import CoffeeList from './views/Coffees';
-import OriginList from './views/Origins';
+import Coffee from './views/Details';
 import UserProfile from './views/UserProfile';
+import Admin from './views/admin/Dashboard';
 import Home from './views/Home';
 
 function App() {
@@ -14,14 +15,15 @@ function App() {
       <header>
         <Navbar />
       </header>
-      <main className="container mt-4">
+      <main>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/cafes" element={<CoffeeList />} />
-          <Route path="/origenes" element={<OriginList />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/perfil" element={<UserProfile />} />
+          <Route path="/details/:id" element={<Coffee />} />
+          <Route path="/admin" element={<Admin />} />
         </Routes>
       </main>
       <Footer />

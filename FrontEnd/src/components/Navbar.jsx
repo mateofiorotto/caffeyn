@@ -17,8 +17,8 @@ function Navbar() {
         <Link className="navbar-brand" to="/">Caffeyn</Link>
         <div className="collapse navbar-collapse">
           <ul className="navbar-nav ms-auto">
+            <li><Link className="nav-link" to="/">Home</Link></li>
             <li><Link className="nav-link" to="/cafes">Cafés</Link></li>
-            <li><Link className="nav-link" to="/origenes">Orígenes</Link></li>
             {token ? (
               <>
                 <li><Link className="nav-link" to="/perfil">Perfil</Link></li>
