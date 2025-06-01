@@ -23,13 +23,11 @@ function Register() {
   return (
     <section className="container d-flex justify-content-center py-5">
       <div
-        className="card bg-dark text-light p-4 w-100"
-        style={{ maxWidth: "500px" }}
-      >
+        className="card bg-dark text-light p-4 w-50">
         <h2>Registro</h2>
         {error && <div className="alert alert-danger">{error}</div>}
         <form onSubmit={handleSubmit}>
-          <div className="mb-3">
+          <div className="mb-4 mt-4">
             <label>Nombre</label>
             <input
               type="text"
@@ -39,7 +37,7 @@ function Register() {
               required
             />
           </div>
-          <div className="mb-3">
+          <div className="mb-4">
             <label>Email</label>
             <input
               type="email"
@@ -49,7 +47,7 @@ function Register() {
               required
             />
           </div>
-          <div className="mb-3">
+          <div className="mb-5">
             <label>Contraseña</label>
             <input
               type="password"
@@ -62,7 +60,7 @@ function Register() {
           <button className="btn btn-success w-100">Registrarse</button>
         </form>
         <div>
-          <p className="mt-3 text-center">
+          <p className="text-center mt-4">
             ¿Ya tienes una cuenta?{" "}
             <a href="/login" className="text-primary">
               Inicia sesión aquí

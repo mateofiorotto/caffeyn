@@ -27,13 +27,11 @@ function Login() {
   return (
     <section className="container d-flex justify-content-center py-5">
       <div
-        className="card bg-dark text-light p-4 w-100"
-        style={{ maxWidth: "500px" }}
-      >
+        className="card bg-dark text-light p-4 w-50">
         <h2>Login</h2>
         {error && <div className="alert alert-danger">{error}</div>}
         <form onSubmit={handleSubmit}>
-          <div className="mb-3">
+          <div className="mb-4 mt-4">
             <label>Email</label>
             <input
               type="email"
@@ -43,7 +41,7 @@ function Login() {
               required
             />
           </div>
-          <div className="mb-3">
+          <div className="mb-5">
             <label>Contraseña</label>
             <input
               type="password"
@@ -55,8 +53,8 @@ function Login() {
           </div>
           <button className="btn btn-primary w-100">Iniciar Sesión</button>
         </form>
-        <div className="mt-3 text-center">
-          <p>
+        <div>
+          <p className="text-center mt-4">
             ¿No tienes una cuenta?{" "}
             <a href="/register" className="text-primary">
               Regístrate aquí

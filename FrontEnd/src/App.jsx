@@ -4,12 +4,21 @@ import Footer from './components/Footer';
 import Login from './views/Login';
 import Register from './views/Register';
 import CoffeeList from './views/Coffees';
+import Contact from './views/Contact';
 import Coffee from './views/Details';
 import UserProfile from './views/UserProfile';
 import Dashboard from './views/admin/Dashboard';
 import Home from './views/Home';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import { useEffect } from 'react';
 
 function App() {
+
+  useEffect(() => {
+    AOS.init({ once: false });
+  }, []);
+
   return (
     <Router>
       <header>
@@ -19,6 +28,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/cafes" element={<CoffeeList />} />
+          <Route path="/contacto" element={<Contact />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/perfil" element={<UserProfile />} />

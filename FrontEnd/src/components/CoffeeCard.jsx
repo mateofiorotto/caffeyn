@@ -5,13 +5,6 @@ function CoffeeCard({ name, description, roastLevel, flavorNote, image, origin }
       <div className="card-body">
         <h3 className="card-title">{name}</h3>
         <p className="card-text">{description}</p>
-        <p className="card-text"><strong>Nivel de tostado:</strong> {roastLevel}</p>
-        <p className="card-text"><strong>Nota de sabor:</strong> {flavorNote}</p>
-        {origin && (
-          <p className="card-text">
-            <strong>Origen:</strong> {origin.country}, {origin.region}
-          </p>
-        )}
       </div>
     </div>
   );
