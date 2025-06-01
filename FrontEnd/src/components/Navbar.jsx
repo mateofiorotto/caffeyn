@@ -1,10 +1,11 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
 
 function Navbar() {
   const { token, logout } = useContext(AuthContext);
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleLogout = () => {
     logout();
@@ -26,7 +27,7 @@ function Navbar() {
               </>
             ) : (
               <>
-                <li><Link className="nav-link" to="/login">Login</Link></li>
+                <li><Link className="nav-link" to="/login" state={{ from: location.pathname }}>Login</Link></li>
                 <li><Link className="nav-link" to="/register">Registro</Link></li>
               </>
             )}

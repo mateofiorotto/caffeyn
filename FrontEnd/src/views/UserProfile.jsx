@@ -15,12 +15,17 @@ function UserProfile() {
   if (!user) return <div className="alert alert-warning">No se pudo cargar el perfil.</div>;
 
   return (
-    <div className="card bg-dark text-light p-4">
-      <h2>Perfil de Usuario</h2>
-      <p><strong>Nombre:</strong> {user.name}</p>
-      <p><strong>Email:</strong> {user.email}</p>
-      <p><strong>Rol:</strong> {user.role}</p>
-    </div>
+    <section className="container d-flex justify-content-center py-5">
+      <div
+        className="card bg-dark text-light p-4 w-100"
+        style={{ maxWidth: "500px" }}
+      >
+        <h2>Perfil de Usuario</h2>
+        <p><strong>Nombre:</strong> {user.name}</p>
+        <p><strong>Email:</strong> {user.email}</p>
+        <p><strong>Rol:</strong> {user.role}</p>
+      </div>
+    </section>
   );
 }
 

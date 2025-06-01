@@ -69,7 +69,7 @@ export const getCoffeeById = async (req, res) => {
 // POST
 export const createCoffee = async (req, res) => {
   const { name, description, roastLevel, flavorNote, image, origin } = req.body;
-
+console.log("Datos recibidos en backend:", req.body);
   if (
     !name ||
     !description ||

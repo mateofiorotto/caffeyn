@@ -1,46 +1,121 @@
-const API_URL = 'http://localhost:3000/api'; // Ajusta el puerto si es necesario
+const API_URL = "http://localhost:3000/api";
+import { getToken } from './auth';
 /* Cafe */
-export async function fetchCafes() { // Función para obtener todos los cafés
+
+// Función para obtener todos los cafés
+export async function fetchCafes() {
   const res = await fetch(`${API_URL}/coffees`);
   const json = await res.json();
   console.log("Respuesta del backend:", json);
-  return await json.data || [];
+  return (await json.data) || [];
 }
 
-export async function fetchCafeById(id){ // Función para obtener un café por su ID
+// Función para obtener un café por su ID
+export async function fetchCafeById(id) {
   const res = await fetch(`${API_URL}/coffees/${id}`);
-   const json = await res.json();
+  const json = await res.json();
   if (!res.ok) {
-    throw new Error('No se pudo obtener el café');
+    throw new Error("No se pudo obtener el café");
   }
-  
-  return await json.data || [];
+
+  return (await json.data) || [];
 }
 
-/*  */
+// Función para crear un nuevo café
+export async function createCafe(data) {
+  const token = getToken();
+  const res = await fetch(`${API_URL}/coffees`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(data),
+  });
+
+  const json = await res.json();
+  return json;
+}
+
+// Función para borrar un café por su ID
+export async function deleteCafeById(id) {
+  const res = await fetch(`${API_URL}/coffees/${id}`, {
+    method: "DELETE",
+  });
+  if (!res.ok) {
+    throw new Error("No se pudo eliminar el café");
+  }
+  return true;
+}
+
+// Funcion para editar un café por su ID
+export async function updateCoffee(id, data) {
+  const res = await fetch(`${API_URL}/coffees/${id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+  if (!res.ok) {
+    throw new Error("No se pudo editar el Café");
+  }
+  return true;
+}
 
 
-export async function fetchOrigens() { // Función para obtener todos los orígenes
+
+
+
+/* Orígenes */
+
+// Función para obtener todos los orígenes
+export async function fetchOrigens() {
   const res = await fetch(`${API_URL}/origins`);
   const json = await res.json();
-  return await json.data || [];
+  return (await json.data) || [];
 }
 
-export async function fetchUsers() { // Función para obtener todos los usuarios
+
+// Funcion para crear un nuevo origen
+export async function createOrigin(data) {
+  const res = await fetch(`${API_URL}/origins`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  });
+  const json = await res.json();
+  return json;
+}
+
+
+/* Usuarios */
+
+// Función para obtener todos los usuarios
+export async function fetchUsers() {
   const res = await fetch(`${API_URL}/users`);
   const json = await res.json();
-  return await json.data || [];
+  return (await json.data) || [];
 }
 
-
-
-
-
-export async function fetchUserProfile(token) { // Función para obtener el perfil del usuario autenticado
+// Función para obtener el perfil del usuario autenticado
+export async function fetchUserProfile(token) {
   const res = await fetch(`${API_URL}/users/profile`, {
     headers: { Authorization: `Bearer ${token}` },
   });
   const json = await res.json();
   console.log("Respuesta de perfil:", json);
-  return await json.data || null; // Devuelve solo la info del usuario
+  return (await json.data) || null;
+}
+
+// Funcion para crear un nuevo usuario
+
+export async function createUser(data) {
+  const res = await fetch(`${API_URL}/users`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  });
+  const json = await res.json();
+  return json;
 }

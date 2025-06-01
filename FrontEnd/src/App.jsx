@@ -6,7 +6,7 @@ import Register from './views/Register';
 import CoffeeList from './views/Coffees';
 import Coffee from './views/Details';
 import UserProfile from './views/UserProfile';
-import Admin from './views/admin/Dashboard';
+import Dashboard from './views/admin/Dashboard';
 import Home from './views/Home';
 
 function App() {
@@ -23,7 +23,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/perfil" element={<UserProfile />} />
           <Route path="/details/:id" element={<Coffee />} />
-          <Route path="/admin" element={<Admin />} />
+          <Route path="/admin" element={<Dashboard />} />
         </Routes>
       </main>
       <Footer />
