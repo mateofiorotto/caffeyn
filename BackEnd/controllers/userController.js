@@ -67,6 +67,7 @@ export const login = async (req, res) => {
     }
     //verificar contraseña correcta, comparando la pw con el hash
     const passwordOk = await bcrypt.compare(password, user.password);
+    
     if (!passwordOk) {
       return res
         .status(401)

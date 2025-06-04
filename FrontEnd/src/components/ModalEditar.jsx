@@ -212,6 +212,17 @@ function ModalEditar({
                 onChange={handleChange}
               />
             </div>
+            <div className="mb-3">
+              <label>Contraseña</label>
+              <input
+                type="password"
+                className="form-control"
+                name="password"
+                value={formData.password || ""}
+                onChange={handleChange}
+                placeholder="Dejar vacío para no cambiar"
+              />
+            </div>
           </>
         );
       default:
