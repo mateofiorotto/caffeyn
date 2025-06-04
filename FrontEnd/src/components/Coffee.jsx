@@ -1,4 +1,4 @@
-function Coffee({ name, description, roastLevel, flavorNote, image, origin }) {
+function Coffee({ name, description, price, roastLevel, flavorNote, image, origin }) {
   return (
     <div className="row justify-content-center align-items-center ">
       <div class="col-lg-6 col-12">
@@ -6,6 +6,7 @@ function Coffee({ name, description, roastLevel, flavorNote, image, origin }) {
       </div>
       <div className="col-lg-6 col-12">
         <h2 className="mb-3 card-title">{name}</h2>
+        <p className="price card-text">${price}</p>
         <p className="card-text">{description}</p>
         <p className="card-text"><strong>Nivel de tostado:</strong> {roastLevel}</p>
         <p className="card-text"><strong>Nota de sabor:</strong> {flavorNote}</p>

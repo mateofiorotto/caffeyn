@@ -182,7 +182,7 @@ footer {
   color: #ddd;
 }
 
-.coffee-price {
+.coffee-price, .price {
   font-size: 1.1rem;
   font-weight: bold;
   color: #ffcc00;

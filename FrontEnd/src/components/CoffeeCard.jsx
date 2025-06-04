@@ -1,7 +1,7 @@
 function CoffeeCard({ name, shortDescription, image, price, origin }) {
 
   return (
-    <div className="coffee-card">
+    <div data-aos="zoom-in" className="coffee-card">
       <img src={`/public/imgs/${image}`} alt={name} className="coffee-image" />
       <div className="coffee-content">
         <h3 className="coffee-title">{name}</h3>
