@@ -1,10 +1,13 @@
-function CoffeeCard({ name, description, roastLevel, flavorNote, image, origin }) {
+function CoffeeCard({ name, shortDescription, image, price, origin }) {
+
   return (
-    <div className="card bg-dark text-light mb-3 border-secondary">
-      <img src={`/public/imgs/${image}`} className="card-img-top" alt={name} style={{ maxHeight: '200px', objectFit: 'cover' }} />
-      <div className="card-body">
-        <h3 className="card-title">{name}</h3>
-        <p className="card-text">{description}</p>
+    <div className="coffee-card">
+      <img src={`/public/imgs/${image}`} alt={name} className="coffee-image" />
+      <div className="coffee-content">
+        <h3 className="coffee-title">{name}</h3>
+        <p className="coffee-origin">{origin?.country}, {origin?.region}</p>
+        <p className="coffee-description">{shortDescription}</p>
+        <p className="coffee-price">${price}</p>
       </div>
     </div>
   );

@@ -16,6 +16,13 @@ const coffeeSchema = new mongoose.Schema({
         maxlength: [1000, "La descripción no debe exceder los 1000 caracteres"],
         trim: true
     },
+    shortDescription: {
+        type: String,
+        required: [true, "La descripción corta es obligatoria"],
+        minlength: [10, "La descripción corta debe tener al menos 10 caracteres"],
+        maxlength: [100, "La descripción corta no debe exceder los 100 caracteres"],
+        trim: true
+    },
     roastLevel: {
         type: String,
         required: [true, "El nivel de tostado es obligatorio"]
@@ -34,12 +41,12 @@ const coffeeSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "Origin",
         required: [true, "El origen es obligatorio"]
-    }
-    /* price: {
+    },
+    price: {
         type: Number,
         required: [true, "El precio es obligatorio"],
-        min: [0, "El precio no puede ser negativo"]
-    } */
+        min: [0, "El precio no puede ser negativo"],
+    }
 });
 
 export default mongoose.model("Coffee", coffeeSchema);

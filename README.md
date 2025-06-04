@@ -106,10 +106,11 @@ para la creación de componentes.
     Una vez que npm te de la ip, entra y ya podes probar la app.
 
 ### Por hacer
-- Agregar campos de price y short_description al modelo
+- CRUD (imgs)
 - Preguntar y ver si sacamos o no los usuarios del front
 - Revisar codigo frontend (hooks, router, componentes, vistas y logica, manejo del estado)
 - Estilos, animaciones y responsive
 - Redireccion en login / logout
 - Confirmar contraseña en el registro
 - Prohibir el acceso a usuarios NO ADMIN al dashboard
+- Cambiar datos-prueba.txt (las descripciones mas largas, las descripciones cortas de 100 caracteres y agregar precios).

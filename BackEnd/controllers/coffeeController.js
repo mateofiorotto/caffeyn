@@ -68,21 +68,23 @@ export const getCoffeeById = async (req, res) => {
 
 // POST
 export const createCoffee = async (req, res) => {
-  const { name, description, roastLevel, flavorNote, image, origin } = req.body;
+  const { name, description, shortDescription, roastLevel, flavorNote, image, origin, price } = req.body;
 console.log("Datos recibidos en backend:", req.body);
   if (
     !name ||
     !description ||
+    !shortDescription ||
     !roastLevel ||
     !flavorNote ||
     !image ||
-    !origin
+    !origin ||
+    !price
   ) {
     return res
       .status(400)
       .json({
         message: "Faltan datos OBLIGATORIOS",
-        data: { name, description, roastLevel, flavorNote, image, origin },
+        data: { name, description, shortDescription, roastLevel, flavorNote, image, origin, price },
       });
   }
 
@@ -98,10 +100,12 @@ console.log("Datos recibidos en backend:", req.body);
     const newCoffee = new Coffee({
       name,
       description,
+      shortDescription,
       roastLevel,
       flavorNote,
       image,
       origin,
+      price
     });
     await newCoffee.save();
     return res.status(201).json({ message: "Cafe creado", data: newCoffee });
@@ -123,7 +127,7 @@ console.log("Datos recibidos en backend:", req.body);
 // PUT (update)
 export const updateCoffee = async (req, res) => {
   const { id } = req.params;
-  const { name, description, roastLevel, flavorNote, image, origin } = req.body;
+  const { name, description, shortDescription, roastLevel, flavorNote, image, origin, price } = req.body;
 
   //validar que exista origen
   if (origin) {
@@ -136,7 +140,7 @@ export const updateCoffee = async (req, res) => {
   try {
     const updatedCoffee = await Coffee.findByIdAndUpdate(
       id,
-      { name, description, roastLevel, flavorNote, image, origin },
+      { name, description, shortDescription, roastLevel, flavorNote, image, origin, price },
       { new: true }
     );
 

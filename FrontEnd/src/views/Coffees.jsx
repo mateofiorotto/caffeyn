@@ -10,9 +10,9 @@ function Coffees() {
   }, []);
 
   return (
-    <section className="container coffees">
+    <section className="container coffees pt-5 pb-5">
     <div className="row justify-content-center align-items-center">
-      <h2>Cafés Disponibles</h2>
+      <h2 className="text-center pt-5 pb-5 text-uppercase fw-bold">Cafés Disponibles</h2>
       {cafes.length > 0 ? (
         cafes.map((cafe) => (
           <div key={cafe._id} className="col-lg-4 col-12">
@@ -24,9 +24,8 @@ function Coffees() {
                 name={cafe.name}
                 price={cafe.price}
                 description={cafe.description}
-                roastLevel={cafe.roastLevel}
-                flavorNote={cafe.flavorNote}
                 image={cafe.image}
+                shortDescription={cafe.shortDescription}
                 origin={cafe.origin}
               />
             </a>
