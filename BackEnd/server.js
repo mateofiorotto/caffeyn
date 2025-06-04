@@ -17,7 +17,7 @@ app.use(express.static("public")); //admitimos archivos estaticos. (index, css, 
 
 //creando middleware
 app.use((req, res, next) => {
-    console.log("Middleware")
+    /* console.log("Middleware") */
     next();
 })
 

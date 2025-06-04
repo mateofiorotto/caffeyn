@@ -49,10 +49,10 @@ function Navbar() {
             
              {token ? (
               <>
-                <li><Link className="nav-link" to="/perfil"><i class="bi bi-person-fill me-2"><span class="d-none">Icono user</span></i>{name}</Link></li>
+                <li><Link className="nav-link" to="/perfil"><i className="bi bi-person-fill me-2"><span className="d-none">Icono user</span></i>{name}</Link></li>
                 {/* Si es admin, mostrar btn de crud */}
                 {role === 'admin' && (
-                  <li><Link className="btn btn-link nav-link" to="/admin"><i class="bi bi-gear-fill me-2"><span class="d-none">Icono Dashboard</span></i>Dashboard</Link></li>
+                  <li><Link className="btn btn-link nav-link" to="/admin"><i className="bi bi-gear-fill me-2"><span className="d-none">Icono Dashboard</span></i>Dashboard</Link></li>
                 )}
                 <li><Link className="btn btn-link nav-link" onClick={handleLogout}>Salir</Link></li>
               </>

@@ -27,48 +27,69 @@ function ModalAgregar({ onSubmit, type, modalId, origins = [] }) {
         return (
           <>
             <div className="mb-3">
-              <label>Nombre</label>
+              <label htmlFor="name">Nombre</label>
               <input
+                id="name"
                 className="form-control"
                 name="name"
+                required
+                minLength={2}
+                maxLength={100}
                 onChange={handleChange}
               />
             </div>
             <div className="mb-3">
-              <label>Descripción</label>
-              <input
+              <label htmlFor="description">Descripción</label>
+              <textarea
+                id="description"
                 className="form-control"
                 name="description"
+                required
+                minLength={10}
+                maxLength={1000}
                 onChange={handleChange}
               />
             </div>
             <div className="mb-3">
-              <label>Tostado</label>
+              <label htmlFor="roastLevel">Tostado</label>
               <input
+                id="roastLevel"
                 className="form-control"
                 name="roastLevel"
+                required
                 onChange={handleChange}
               />
             </div>
             <div className="mb-3">
-              <label>Nota de Sabor</label>
+              <label htmlFor="flavorNote">Nota de Sabor</label>
               <input
+                id="flavorNote"
                 className="form-control"
                 name="flavorNote"
+                required
+                maxLength={100}
                 onChange={handleChange}
               />
             </div>
             <div className="mb-3">
-              <label>Imagen (nombre archivo)</label>
+              <label htmlFor="image">Imagen (nombre del archivo)</label>
               <input
+                id="image"
                 className="form-control"
                 name="image"
+                required
                 onChange={handleChange}
               />
             </div>
             <div className="mb-3">
-              <label>Origen</label>
-              <select className="form-select" name="origin" onChange={handleChange} required>
+              <label htmlFor="origin">Origen</label>
+              <select
+                id="origin"
+                className="form-select"
+                name="origin"
+                required
+                onChange={handleChange}
+              >
                 <option value="">Selecciona un origen</option>
                 {origins.map((origin) => (
                   <option key={origin._id} value={origin._id}>
@@ -83,39 +104,54 @@ function ModalAgregar({ onSubmit, type, modalId, origins = [] }) {
         return (
           <>
             <div className="mb-3">
-              <label>País</label>
+              <label htmlFor="country">País</label>
               <input
+                id="country"
                 className="form-control"
                 name="country"
+                required
+                minLength={2}
+                maxLength={100}
                 onChange={handleChange}
               />
             </div>
             <div className="mb-3">
-              <label>Región</label>
+              <label htmlFor="region">Región</label>
               <input
+                id="region"
                 className="form-control"
                 name="region"
+                required
+                minLength={2}
+                maxLength={100}
                 onChange={handleChange}
               />
             </div>
             <div className="mb-3">
-              <label>Clima</label>
+              <label htmlFor="climate">Clima</label>
               <input
+                id="climate"
                 className="form-control"
                 name="climate"
+                required
                 onChange={handleChange}
               />
             </div>
             <div className="mb-3">
-              <label>Descripción</label>
-              <input
+              <label htmlFor="description">Descripción</label>
+              <textarea
+                id="description"
                 className="form-control"
                 name="description"
+                required
+                minLength={10}
+                maxLength={1000}
                 onChange={handleChange}
               />
             </div>
           </>
         );
+
       case "usuario":
         return (
           <>

@@ -1,6 +1,7 @@
 const API_URL = "http://localhost:3000/api";
-import { getToken } from './auth';
-/* Cafe */
+import { getToken } from "./auth";
+
+/* =================================== Cafe  ================================== */
 
 // Función para obtener todos los cafés
 export async function fetchCafes() {
@@ -39,35 +40,47 @@ export async function createCafe(data) {
 
 // Función para borrar un café por su ID
 export async function deleteCafeById(id) {
+  const token = getToken();
   const res = await fetch(`${API_URL}/coffees/${id}`, {
     method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
   });
+
   if (!res.ok) {
+    const errorText = await res.text();
+    console.error("Error al eliminar café:", errorText);
     throw new Error("No se pudo eliminar el café");
   }
-  return true;
+
+  const json = await res.json();
+  return json;
 }
 
 // Funcion para editar un café por su ID
 export async function updateCoffee(id, data) {
+  const token = getToken();
   const res = await fetch(`${API_URL}/coffees/${id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify(data),
+    body: JSON.stringify(data), // ← esto debe ser válido JSON plano
   });
+
   if (!res.ok) {
+    const errorText = await res.text();
+    console.error("Respuesta del backend:", errorText);
     throw new Error("No se pudo editar el Café");
   }
+
   return true;
 }
 
-
-
-
-
-/* Orígenes */
+/* =================================== Orígenes ================================== */
 
 // Función para obtener todos los orígenes
 export async function fetchOrigens() {
@@ -76,20 +89,65 @@ export async function fetchOrigens() {
   return (await json.data) || [];
 }
 
-
 // Funcion para crear un nuevo origen
 export async function createOrigin(data) {
+  const token = getToken();
   const res = await fetch(`${API_URL}/origins`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
     body: JSON.stringify(data),
   });
   const json = await res.json();
   return json;
 }
 
+// Función para borrar un origen por su ID
+export async function deleteOriginById(id) {
+  const token = getToken();
+  const res = await fetch(`${API_URL}/origins/${id}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  });
 
-/* Usuarios */
+  if (!res.ok) {
+    const errorText = await res.text();
+    console.error("Error al eliminar origen:", errorText);
+    throw new Error("No se pudo eliminar el origen");
+  }
+
+  const json = await res.json();
+  return json;
+}
+
+// Funcion para editar un origen por su ID
+export async function updateOrigin(id, data) {
+  const token = getToken();
+  const res = await fetch(`${API_URL}/origins/${id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(data), // ← esto debe ser válido JSON plano
+  });
+
+  if (!res.ok) {
+    const errorText = await res.text();
+    console.error("Respuesta del backend:", errorText);
+    throw new Error("No se pudo editar el origen");
+  }
+
+  return true;
+}
+
+
+/* =================================== Usuarios ================================== */
 
 // Función para obtener todos los usuarios
 export async function fetchUsers() {
@@ -109,7 +167,6 @@ export async function fetchUserProfile(token) {
 }
 
 // Funcion para crear un nuevo usuario
-
 export async function createUser(data) {
   const res = await fetch(`${API_URL}/users`, {
     method: "POST",
@@ -118,4 +175,46 @@ export async function createUser(data) {
   });
   const json = await res.json();
   return json;
+}
+
+// Función para borrar un usuario por su ID
+export async function deleteUserById(id) {
+  const token = getToken();
+  const res = await fetch(`${API_URL}/users/${id}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  if (!res.ok) {
+    const errorText = await res.text();
+    console.error("Error al eliminar usuario:", errorText);
+    throw new Error("No se pudo eliminar el usuario");
+  }
+
+  const json = await res.json();
+  return json;
+}
+
+// Funcion para editar un usuario por su ID
+export async function updateUser(id, data) {
+  const token = getToken();
+  const res = await fetch(`${API_URL}/users/${id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(data), // ← esto debe ser válido JSON plano
+  });
+
+  if (!res.ok) {
+    const errorText = await res.text();
+    console.error("Respuesta del backend:", errorText);
+    throw new Error("No se pudo editar el usuario");
+  }
+
+  return true;
 }

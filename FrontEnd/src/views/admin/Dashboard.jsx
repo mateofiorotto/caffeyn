@@ -40,8 +40,8 @@ function Dashboard() {
       </div>
 
       {selectedTable === 'coffees' && <CoffeeTable cafes={cafes} origins={origins} refreshData={refreshData}/>}
-      {selectedTable === 'origins' && <OriginTable origins={origins} />}
-      {selectedTable === 'users' && <UserTable users={users} />}
+      {selectedTable === 'origins' && <OriginTable origins={origins} refreshData={refreshData}/>}
+      {selectedTable === 'users' && <UserTable users={users} refreshData={refreshData}/>}
     </div>
   );
 }
