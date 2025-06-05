@@ -151,7 +151,7 @@ footer {
 }
 
 .coffee-card:hover {
-  transform: translateY(-6px);
+  transform: translateY(-6px) !important;
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
 }
 

@@ -106,7 +106,7 @@ para la creación de componentes.
     Una vez que npm te de la ip, entra y ya podes probar la app.
 
 ### Por hacer
-- CRUD (imgs)
+- Documentacion (comentarios)
 - Preguntar y ver si sacamos o no los usuarios del front
 - Revisar codigo frontend (hooks, router, componentes, vistas y logica, manejo del estado)
 - Estilos, animaciones y responsive

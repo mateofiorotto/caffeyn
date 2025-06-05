@@ -213,3 +213,60 @@ export const getUserProfile = async (req, res) => {
 }
 
 };
+
+export const register = async (req, res) => {
+  const { name, email, password } = req.body;
+  console.log(req.body);
+
+  if (!name || !email || !password) {
+    return res.status(400).json({
+      msg: "Faltan datos OBLIGATORIOS",
+      data: { name, email, password },
+    });
+  }
+
+  try {
+    // Verificar si el email ya está registrado
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res.status(400).json({
+        msg: "El email ya está registrado",
+        data: { email },
+      });
+    }
+
+    // Hashear la contraseña
+    const passwordHash = await bcrypt.hash(password, salt);
+
+    // Crear nuevo usuario con role 'user'
+    const newUser = new User({ name, email, password: passwordHash, role: 'user' });
+    await newUser.save();
+
+    //token jwt para el nuevo user 
+    const token = jwt.sign(
+      { id: newUser._id, email: newUser.email, role: newUser.role },
+      secretKey,
+      { expiresIn: '1d' }
+    );
+
+    // No devolver la contraseña en la respuesta
+    const userToReturn = {
+      _id: newUser._id,
+      name: newUser.name,
+      email: newUser.email,
+      role: newUser.role,
+    };
+
+    return res.status(201).json({ msg: "Usuario creado con éxito", data: userToReturn, jwt: token });
+
+  } catch (error) {
+
+    if (error.name === "ValidationError") {
+      return res.status(400).json({ msg: "Error de validación", error: error.message });
+    }
+
+    console.log("Error details:", error);
+    return res.status(500).json({ msg: "Ocurrió un error", error: error.message });
+  }
+};
+

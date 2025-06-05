@@ -9,16 +9,16 @@ function Register() {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const res = await register(name, email, password);
-    if (res.token) {
-      saveToken(res.token);
-      navigate("/");
-    } else {
-      setError(res.message || "Error al registrarse");
-    }
-  };
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  const res = await register(name, email, password);
+  if (res.token) {
+    saveToken(res.token);
+    navigate("/");
+  } else {
+    setError(res.error || "Error al registrarse");
+  }
+};
 
   return (
     <section className="container d-flex justify-content-center py-5">
