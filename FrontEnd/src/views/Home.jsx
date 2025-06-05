@@ -22,7 +22,7 @@ export function Home() {
         </div>
         <div className="row align-items-center justify-content-center">
           <div className="col-lg-6 col-12 text-center pe-5 ps-5">
-            <div data-aos="fade-right" className="ps-5 pe-5">
+            <div data-aos="fade-right" className="ps-5 pe-5 pt-md-5 pb-md-5">
               <h2 className="mb-4">Experiencia cafetera única</h2>
               <p>
                 Desde el primer aroma que se desprende al abrir el paquete hasta
@@ -60,7 +60,7 @@ export function Home() {
             data-aos="fade-left"
             className="col-lg-6 col-12 text-center ps-5 pe-5 order-1 order-lg-2"
           >
-            <div className="ps-5 pe-5">
+            <div className="ps-5 pe-5 pt-md-5 pb-md-5">
               <h2 className="mb-4">Origen natural</h2>
               <p>
                 Seleccionamos cuidadosamente granos provenientes de fincas
@@ -78,7 +78,7 @@ export function Home() {
 
         <div className="row align-items-center justify-content-center">
           <div data-aos="fade-right" className="col-lg-6 col-12 text-center">
-            <div className="ps-5 pe-5">
+            <div className="ps-5 pe-5 pt-md-5 pb-md-5">
               <h2 className="mb-4">Pasión por el sabor</h2>
               <p>
                 Nuestro amor por el café se traduce en cada etapa del proceso.
@@ -105,8 +105,8 @@ export function Home() {
       <section>
         <div data-aos="fade-in" className="porque-elegirnos">
           <div className="container text-center">
-            <h2 className="mb-4">¿Por qué elegirnos?</h2>
-            <p>
+            <h2 className="pt-5 mb-4">¿Por qué elegirnos?</h2>
+            <p className="pb-5">
               Porque no solo vendemos café, compartimos una pasión. Nos importa
               la calidad, el origen y tu experiencia como cliente. Apostamos por
               lo artesanal, por el trato personalizado y por brindarte lo mejor,

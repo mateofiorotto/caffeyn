@@ -3,7 +3,7 @@ import { fetchCafes, fetchOrigens, fetchUsers } from '../../services/api';
 import CoffeeTable from '../../components/admin/CoffeeTable';
 import OriginTable from '../../components/admin/OriginTable';
 import UserTable from '../../components/admin/UserTable';
-import { getToken } from '../../services/auth';
+import { getUserFromToken } from '../../services/auth';
 import { useNavigate } from 'react-router-dom';
 
 function Dashboard() {
@@ -20,14 +20,16 @@ function Dashboard() {
   };
 
   useEffect(() => {
-    const token = getToken();
-    if (!token) {
-      navigate('/login');
-      return;
-    }
+  const user = getUserFromToken(); //obtener el token y ver si el rol es admin para prohibir o no el acceso al dashboard
 
+  if (!user) {
+    navigate('/login');
+  } else if (user.role !== 'admin') {
+    navigate('/');
+  } else {
     refreshData();
-  }, [navigate]);
+  }
+}, [navigate]);
 
   return (
     <div className="container my-4">

@@ -3,9 +3,9 @@ import React from "react";
 function Contact() {
   return (
     // Formularios de contacto
-    <div className="container">
-      <h2 className="text-center my-4">Cuentanos tu experiencia</h2>
-      <form>
+    <div data-aos="fade-up" className="container pt-5 pb-5">
+      <h2 className="text-center my-4 pt-5">Cuentanos tu experiencia</h2>
+      <form className="pb-5">
         <div className="mb-3">
           <label htmlFor="name" className="form-label">
             Nombre

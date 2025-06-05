@@ -21,12 +21,12 @@ const handleSubmit = async (e) => {
 };
 
   return (
-    <section className="container d-flex justify-content-center py-5">
-      <div
-        className="card bg-dark text-light p-4 w-50">
+    <section className="container d-flex justify-content-center pt-5 pb-5">
+      <div data-aos="fade-up"
+        className="card bg-dark text-light p-4 pt-5 w-50">
         <h2>Registro</h2>
         {error && <div className="alert alert-danger">{error}</div>}
-        <form onSubmit={handleSubmit}>
+        <form className="pb-5" onSubmit={handleSubmit}>
           <div className="mb-4 mt-4">
             <label>Nombre</label>
             <input

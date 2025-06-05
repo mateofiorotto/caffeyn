@@ -1,10 +1,10 @@
 function Coffee({ name, description, price, roastLevel, flavorNote, image, origin }) {
   return (
     <div className="row justify-content-center align-items-center ">
-      <div class="col-lg-6 col-12">
+      <div data-aos="fade-right" class="col-lg-6 col-12">
         <img src={`/public/imgs/${image}`} className="img-fluid d-block m-auto" alt={name}/>
       </div>
-      <div className="col-lg-6 col-12">
+      <div data-aos="fade-left"className="col-lg-6 col-12">
         <h2 className="mb-3 card-title">{name}</h2>
         <p className="price card-text">${price}</p>
         <p className="card-text">{description}</p>

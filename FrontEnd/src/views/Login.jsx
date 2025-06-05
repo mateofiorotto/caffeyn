@@ -25,12 +25,12 @@ function Login() {
   };
 
   return (
-    <section className="container d-flex justify-content-center py-5">
-      <div
-        className="card bg-dark text-light p-4 w-50">
+    <section className="container d-flex justify-content-center pt-5 pb-5">
+      <div data-aos="fade-up"
+        className="card pt-5 p-4 bg-dark text-light w-50">
         <h2>Login</h2>
         {error && <div className="alert alert-danger">{error}</div>}
-        <form onSubmit={handleSubmit}>
+        <form className="pb-5" onSubmit={handleSubmit}>
           <div className="mb-4 mt-4">
             <label>Email</label>
             <input

@@ -81,6 +81,23 @@ export function getToken() {
 }
 
 /**
+ * Funcion para obtener el payload del token
+ * 
+ * @return payload
+ */
+export const getUserFromToken = () => {
+  const token = getToken();
+  if (!token) return null;
+
+  try {
+    const payload = token.split('.')[1];
+    return JSON.parse(atob(payload));
+  } catch (err) {
+    return null;
+  }
+};
+
+/**
  * Remover token JWT del localStorage y redirigir a la pantalla de login
  */
 export function logout() {
