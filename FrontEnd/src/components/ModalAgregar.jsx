@@ -12,8 +12,14 @@ function ModalAgregar({ onSubmit, type, modalId, origins = [] }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Datos enviados:", formData);
-    onSubmit(formData);
+    const form = new FormData();
+
+    for (const key in formData) {
+      form.append(key, formData[key]);
+    }
+
+    console.log("📤 Enviando FormData:", formData);
+    onSubmit(form); // ← el componente padre debe manejar FormData
     setFormData({});
     document
       .getElementById(modalId)
@@ -51,6 +57,19 @@ function ModalAgregar({ onSubmit, type, modalId, origins = [] }) {
               />
             </div>
             <div className="mb-3">
+              <label htmlFor="shortDescription">Descripción Corta</label>
+              <input
+                id="shortDescription"
+                className="form-control"
+                name="shortDescription"
+                required
+                minLength={10}
+                maxLength={100}
+                onChange={handleChange}
+              />
+            </div>
+
+            <div className="mb-3">
               <label htmlFor="roastLevel">Tostado</label>
               <input
                 id="roastLevel"
@@ -72,13 +91,19 @@ function ModalAgregar({ onSubmit, type, modalId, origins = [] }) {
               />
             </div>
             <div className="mb-3">
-              <label htmlFor="image">Imagen (nombre del archivo)</label>
+              <label htmlFor="image">Imagen (archivo)</label>
               <input
+                type="file"
                 id="image"
                 className="form-control"
                 name="image"
                 required
-                onChange={handleChange}
+                onChange={(e) =>
+                  setFormData((prev) => ({
+                    ...prev,
+                    image: e.target.files[0],
+                  }))
+                }
               />
             </div>
             <div className="mb-3">
@@ -97,6 +122,19 @@ function ModalAgregar({ onSubmit, type, modalId, origins = [] }) {
                   </option>
                 ))}
               </select>
+            </div>
+            <div className="mb-3">
+              <label htmlFor="price">Precio</label>
+              <input
+                type="number"
+                id="price"
+                className="form-control"
+                name="price"
+                required
+                min="0"
+                step="0.01"
+                onChange={handleChange}
+              />
             </div>
           </>
         );

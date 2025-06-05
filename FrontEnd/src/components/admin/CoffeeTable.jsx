@@ -42,14 +42,14 @@ function CoffeeTable({ cafes, origins, refreshData }) {
   // Función para manejar la edición de un café
   const handleEdit = async (formData) => {
     try {
-      const { _id, ...cleanData } = formData;
+      const _id = formData.get("_id");
       if (!_id) {
-        console.error("No se encontró el ID del café");
+        console.error("No se encontró el ID del café en el FormData");
         return;
       }
-      await updateCoffee(_id, cleanData);
+
+      await updateCoffee(_id, formData); // ← directamente paso el FormData
       refreshData();
-      // Limpiar el café seleccionado después de la actualización
       setSelectedCafe(null);
     } catch (error) {
       console.error("Error al actualizar el café:", error);
@@ -71,21 +71,15 @@ function CoffeeTable({ cafes, origins, refreshData }) {
       <table className="table table-dark table-bordered">
         <thead>
           <tr className="text-center">
-            <th className="text-nowrap" style={{ width: "15%" }}>
-              Nombre
-            </th>
-            <th className="text-nowrap" style={{ width: "25%" }}>
-              Descripción
-            </th>
-            <th className="text-nowrap">Tostado</th>
-            <th className="text-nowrap" style={{ width: "15%" }}>
-              Nota de Sabor
-            </th>
+            <th style={{ width: "12%" }}>Nombre</th>
+            <th style={{ width: "20%" }}>Descripción</th>
+            <th style={{ width: "18%" }}>Descripción Corta</th>
+            <th style={{ width: "8%" }}>Precio</th>
+            <th>Tostado</th>
+            <th style={{ width: "15%" }}>Nota de Sabor</th>
             <th>Imagen</th>
-            <th className="text-nowrap">Origen</th>
-            <th className="text-nowrap text-center" style={{ width: "15%" }}>
-              Acciones
-            </th>
+            <th>Origen</th>
+            <th style={{ width: "15%" }}>Acciones</th>
           </tr>
         </thead>
         <tbody>
@@ -93,6 +87,8 @@ function CoffeeTable({ cafes, origins, refreshData }) {
             <tr key={cafe._id}>
               <td>{cafe.name}</td>
               <td>{cafe.description}</td>
+              <td>{cafe.shortDescription || "-"}</td>
+              <td>{cafe.price ? `$${cafe.price}` : "-"}</td>
               <td>{cafe.roastLevel}</td>
               <td>{cafe.flavorNote}</td>
               <td>
@@ -109,10 +105,9 @@ function CoffeeTable({ cafes, origins, refreshData }) {
                     }}
                   />
                 ) : (
-                  <span>{cafe.image || "Sin imagen"}</span>
+                  <span>Sin imagen</span>
                 )}
               </td>
-
               <td>{cafe.origin?.country || "N/A"}</td>
               <td className="text-center">
                 <button
@@ -123,7 +118,6 @@ function CoffeeTable({ cafes, origins, refreshData }) {
                 >
                   Editar
                 </button>
-
                 <button
                   className="btn btn-sm btn-danger"
                   onClick={() => handleDelete(cafe._id)}

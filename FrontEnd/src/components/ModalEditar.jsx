@@ -33,7 +33,15 @@ function ModalEditar({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit(formData);
+    const form = new FormData();
+
+    for (const key in formData) {
+      form.append(key, formData[key]);
+    }
+
+    console.log("📤 Enviando FormData para edición:", formData);
+
+    onSubmit(form); // el componente padre debe manejar FormData
     document
       .getElementById(modalId)
       ?.querySelector('[data-bs-dismiss="modal"]')
@@ -72,6 +80,19 @@ function ModalEditar({
               />
             </div>
             <div className="mb-3">
+              <label htmlFor="shortDescription">Descripción Corta</label>
+              <input
+                id="shortDescription"
+                className="form-control"
+                name="shortDescription"
+                value={formData.shortDescription || ""}
+                onChange={handleChange}
+                required
+                minLength={5}
+                maxLength={300}
+              />
+            </div>
+            <div className="mb-3">
               <label htmlFor="roastLevel">Tostado</label>
               <input
                 id="roastLevel"
@@ -97,12 +118,16 @@ function ModalEditar({
             <div className="mb-3">
               <label htmlFor="image">Imagen (nombre archivo)</label>
               <input
+                type="file"
                 id="image"
                 className="form-control"
                 name="image"
-                value={formData.image || ""}
-                onChange={handleChange}
-                required
+                onChange={(e) =>
+                  setFormData((prev) => ({
+                    ...prev,
+                    image: e.target.files[0],
+                  }))
+                }
               />
             </div>
             <div className="mb-3">
@@ -122,6 +147,19 @@ function ModalEditar({
                   </option>
                 ))}
               </select>
+            </div>
+            <div className="mb-3">
+              <label htmlFor="price">Precio</label>
+              <input
+                type="number"
+                id="price"
+                className="form-control"
+                name="price"
+                value={formData.price || ""}
+                onChange={handleChange}
+                required
+                min={1}
+              />
             </div>
           </>
         );

@@ -1,5 +1,14 @@
 import Coffee from "../models/Coffee.js";
 import Origin from "../models/Origin.js";
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Ruta absoluta al folder de imágenes en FrontEnd
+const imgDir = path.join(__dirname, "../../FrontEnd/public/imgs");
 
 //Definir metodos http
 
@@ -68,8 +77,21 @@ export const getCoffeeById = async (req, res) => {
 
 // POST
 export const createCoffee = async (req, res) => {
-  const { name, description, shortDescription, roastLevel, flavorNote, image, origin, price } = req.body;
-console.log("Datos recibidos en backend:", req.body);
+  console.log("📩 req.body:", req.body);
+console.log("📦 req.file:", req.file);
+
+  const {
+    name,
+    description,
+    shortDescription,
+    roastLevel,
+    flavorNote,
+    origin,
+    price,
+  } = req.body;
+
+  const image = req.file?.filename;
+
   if (
     !name ||
     !description ||
@@ -80,20 +102,24 @@ console.log("Datos recibidos en backend:", req.body);
     !origin ||
     !price
   ) {
-    return res
-      .status(400)
-      .json({
-        message: "Faltan datos OBLIGATORIOS",
-        data: { name, description, shortDescription, roastLevel, flavorNote, image, origin, price },
-      });
+    return res.status(400).json({
+      message: "Faltan datos OBLIGATORIOS",
+      data: {
+        name,
+        description,
+        shortDescription,
+        roastLevel,
+        flavorNote,
+        image,
+        origin,
+        price,
+      },
+    });
   }
 
-  //validar el origen si existe
-  if (origin) {
-    const originExists = await Origin.findById(origin);
-    if (!originExists) {
-      return res.status(400).json({ message: "Origen no válido" });
-    }
+  const originExists = await Origin.findById(origin);
+  if (!originExists) {
+    return res.status(400).json({ message: "Origen no válido" });
   }
 
   try {
@@ -105,19 +131,13 @@ console.log("Datos recibidos en backend:", req.body);
       flavorNote,
       image,
       origin,
-      price
+      price,
     });
+    console.log("📄 Documento a guardar:", newCoffee);
     await newCoffee.save();
     return res.status(201).json({ message: "Cafe creado", data: newCoffee });
   } catch (error) {
-    console.error("Error details:", error); // Agregar detalles del error
-    // Manejo de errores de validación de Mongoose
-    if (error.name === "ValidationError") {
-      return res
-        .status(400)
-        .json({ msg: "Error de validación", error: error.message });
-    }
-
+    console.error("Error details:", error);
     return res
       .status(500)
       .json({ msg: "Ocurrió un error", error: error.message });
@@ -127,44 +147,60 @@ console.log("Datos recibidos en backend:", req.body);
 // PUT (update)
 export const updateCoffee = async (req, res) => {
   const { id } = req.params;
-  const { name, description, shortDescription, roastLevel, flavorNote, image, origin, price } = req.body;
 
-  //validar que exista origen
-  if (origin) {
-    const originExists = await Origin.findById(origin);
-    if (!originExists) {
-      return res.status(400).json({ message: "Origen no válido" });
-    }
-  }
+  const {
+    name,
+    description,
+    shortDescription,
+    roastLevel,
+    flavorNote,
+    origin,
+    price,
+  } = req.body;
+
+  const newImage = req.file?.filename;
 
   try {
+    const existingCoffee = await Coffee.findById(id);
+    if (!existingCoffee) {
+      return res.status(404).json({ message: "Cafe no encontrado" });
+    }
+
+    // Si hay nueva imagen, borrar la anterior
+    if (newImage && existingCoffee.image) {
+      const oldImagePath = path.join(imgDir, existingCoffee.image);
+      if (fs.existsSync(oldImagePath)) {
+        fs.unlinkSync(oldImagePath);
+        console.log("🧹 Imagen anterior eliminada:", existingCoffee.image);
+      }
+    }
+
     const updatedCoffee = await Coffee.findByIdAndUpdate(
       id,
-      { name, description, shortDescription, roastLevel, flavorNote, image, origin, price },
+      {
+        name,
+        description,
+        shortDescription,
+        roastLevel,
+        flavorNote,
+        image: newImage || existingCoffee.image,
+        origin,
+        price,
+      },
       { new: true }
     );
 
-    if (!updatedCoffee) {
-      return res.status(404).json({ message: "Cafe no encontrado" });
-    } else {
-      return res
-        .status(200)
-        .json({ message: "Cafe actualizado", data: updatedCoffee });
-    }
+    return res
+      .status(200)
+      .json({ message: "Cafe actualizado", data: updatedCoffee });
   } catch (error) {
-    console.error("Error details:", error); // Agregar detalles del error
-    // Manejo de errores de validación de Mongoose
-    if (error.name === "ValidationError") {
-      return res
-        .status(400)
-        .json({ msg: "Error de validación", error: error.message });
-    }
-
+    console.error("Error details:", error);
     return res
       .status(500)
       .json({ msg: "Ocurrió un error", error: error.message });
   }
 };
+
 
 // DELETE
 export const deleteCoffee = async (req, res) => {
@@ -175,9 +211,18 @@ export const deleteCoffee = async (req, res) => {
 
     if (!coffee) {
       return res.status(404).json({ message: "Cafe no encontrado" });
-    } else {
-      return res.status(200).json({ message: "Cafe eliminado", data: coffee });
     }
+
+    // Eliminar imagen física
+    if (coffee.image) {
+      const imagePath = path.join(imgDir, coffee.image);
+      if (fs.existsSync(imagePath)) {
+        fs.unlinkSync(imagePath);
+        console.log("🧹 Imagen eliminada:", coffee.image);
+      }
+    }
+
+    return res.status(200).json({ message: "Cafe eliminado", data: coffee });
   } catch (error) {
     console.error(error);
     return res.status(500).json({ message: "Error al eliminar cafe", error });

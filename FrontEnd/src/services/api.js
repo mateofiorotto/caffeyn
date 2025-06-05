@@ -25,18 +25,19 @@ export async function fetchCafeById(id) {
 // Función para crear un nuevo café
 export async function createCafe(data) {
   const token = getToken();
+
   const res = await fetch(`${API_URL}/coffees`, {
     method: "POST",
     headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${token}`, // NO poner Content-Type manualmente
     },
-    body: JSON.stringify(data),
+    body: data, // ya es FormData
   });
 
   const json = await res.json();
   return json;
 }
+
 
 // Función para borrar un café por su ID
 export async function deleteCafeById(id) {
@@ -62,13 +63,20 @@ export async function deleteCafeById(id) {
 // Funcion para editar un café por su ID
 export async function updateCoffee(id, data) {
   const token = getToken();
+
+  const isFormData = data instanceof FormData;
+
   const res = await fetch(`${API_URL}/coffees/${id}`, {
     method: "PUT",
     headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
+      ...(isFormData
+        ? { Authorization: `Bearer ${token}` }
+        : {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          }),
     },
-    body: JSON.stringify(data), // ← esto debe ser válido JSON plano
+    body: isFormData ? data : JSON.stringify(data),
   });
 
   if (!res.ok) {
@@ -79,6 +87,7 @@ export async function updateCoffee(id, data) {
 
   return true;
 }
+
 
 /* =================================== Orígenes ================================== */
 
