@@ -25,7 +25,6 @@ export async function fetchCafeById(id) {
 // Función para crear un nuevo café
 export async function createCafe(data) {
   const token = getToken();
-
   const res = await fetch(`${API_URL}/coffees`, {
     method: "POST",
     headers: {

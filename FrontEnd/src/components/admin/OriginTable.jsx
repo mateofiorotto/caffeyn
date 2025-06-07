@@ -1,10 +1,16 @@
 import { useState } from "react";
-import ModalAgregar from "../ModalAgregar";
-import ModalEditar from "../ModalEditar";
-import { createOrigin, deleteOriginById, updateOrigin } from "../../services/api";
+import ModalAgregar from "./modals/Add/ModalAddOrigin";
+import ModalEditar from "./modals/Edit/ModalEditOrigin";
+import ModalEliminar from "./modals/Delete/ModalDelete";
+import {
+  createOrigin,
+  deleteOriginById,
+  updateOrigin,
+} from "../../services/api";
 
 function OriginTable({ origins, refreshData }) {
   const [selectedOrigin, setSelectedOrigin] = useState(null);
+  const [itemToDelete, setItemToDelete] = useState(null);
   const modalId = "modalAgregarOrigen";
 
   // Funcion para agregar un nuevo origen
@@ -25,17 +31,16 @@ function OriginTable({ origins, refreshData }) {
 
   // Función para manejar la eliminación de un origen
   const handleDelete = async (id) => {
-    if (window.confirm("¿Estás seguro de eliminar este origen?")) {
-      try {
-        await deleteOriginById(id);
-        console.log("Origen eliminado exitosamente");
-        refreshData();
-      } catch (error) {
-        console.error("Error al eliminar el origen:", error);
-        alert(
-          "Error al eliminar el origen. Revisa la consola para más detalles."
-        );
-      }
+    try {
+      await deleteOriginById(id);
+      console.log("Origen eliminado exitosamente");
+      refreshData();
+      setItemToDelete(null);
+    } catch (error) {
+      console.error("Error al eliminar el origen:", error);
+      alert(
+        "Error al eliminar el origen. Revisa la consola para más detalles."
+      );
     }
   };
 
@@ -49,7 +54,6 @@ function OriginTable({ origins, refreshData }) {
       }
       await updateOrigin(_id, cleanData);
       refreshData();
-      // Limpiar el origen seleccionado después de la actualización
       setSelectedOrigin(null);
     } catch (error) {
       console.error("Error al actualizar el origen:", error);
@@ -105,7 +109,9 @@ function OriginTable({ origins, refreshData }) {
                 </button>
                 <button
                   className="btn btn-sm btn-danger"
-                  onClick={() => handleDelete(origin._id)}
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalDelete"
+                  onClick={() => setItemToDelete(origin)}
                 >
                   Eliminar
                 </button>
@@ -126,6 +132,12 @@ function OriginTable({ origins, refreshData }) {
         modalId="modalEditar"
         initialData={selectedOrigin || {}}
         origins={origins}
+      />
+      <ModalEliminar
+        modalId="modalDelete"
+        type="origen"
+        itemName={itemToDelete?.country || ""}
+        onConfirm={() => itemToDelete && handleDelete(itemToDelete._id)}
       />
     </>
   );

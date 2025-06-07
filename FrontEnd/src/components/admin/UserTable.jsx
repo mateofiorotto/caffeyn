@@ -1,10 +1,12 @@
 import { useState } from "react";
-import ModalAgregar from "../ModalAgregar";
-import ModalEditar from "../ModalEditar";
+import ModalAgregar from "./modals/Add/ModalAddUser";
+import ModalEditar from "./modals/Edit/ModalEditUser";
+import ModalEliminar from "./modals/Delete/ModalDelete";
 import { createUser, deleteUserById, updateUser } from "../../services/api";
 
 function UserTable({ users, refreshData }) {
   const [selectedUser, setSelectedUser] = useState(null);
+  const [itemToDelete, setItemToDelete] = useState(null);
   const modalId = "modalAgregarUsuario";
 
   // Funcion para agregar un nuevo usuario
@@ -25,17 +27,16 @@ function UserTable({ users, refreshData }) {
 
   // Función para manejar la eliminación de un usuario
   const handleDelete = async (id) => {
-    if (window.confirm("¿Estás seguro de eliminar este usuario?")) {
-      try {
-        await deleteUserById(id);
-        console.log("Usuario eliminado exitosamente");
-        refreshData();
-      } catch (error) {
-        console.error("Error al eliminar el usuario:", error);
-        alert(
-          "Error al eliminar el usuario. Revisa la consola para más detalles."
-        );
-      }
+    try {
+      await deleteUserById(id);
+      console.log("Usuario eliminado exitosamente");
+      refreshData();
+      setItemToDelete(null);
+    } catch (error) {
+      console.error("Error al eliminar el usuario:", error);
+      alert(
+        "Error al eliminar el usuario. Revisa la consola para más detalles."
+      );
     }
   };
 
@@ -49,7 +50,6 @@ function UserTable({ users, refreshData }) {
       }
       await updateUser(_id, cleanData);
       refreshData();
-      // Limpiar el usuario seleccionado luego de la actualización
       setSelectedUser(null);
     } catch (error) {
       console.error("Error al actualizar el usuario:", error);
@@ -60,6 +60,13 @@ function UserTable({ users, refreshData }) {
   return (
     <>
       <h2>Usuarios</h2>
+      <button
+        className="btn btn-success mb-3"
+        data-bs-toggle="modal"
+        data-bs-target={`#${modalId}`}
+      >
+        Agregar Usuario
+      </button>
       <table className="table table-dark table-bordered">
         <thead>
           <tr className="text-center">
@@ -90,7 +97,9 @@ function UserTable({ users, refreshData }) {
                 </button>
                 <button
                   className="btn btn-sm btn-danger"
-                  onClick={() => handleDelete(user._id)}
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalDelete"
+                  onClick={() => setItemToDelete(user)}
                 >
                   Eliminar
                 </button>
@@ -99,16 +108,18 @@ function UserTable({ users, refreshData }) {
           ))}
         </tbody>
       </table>
-      <ModalAgregar
-        onSubmit={handleAgregar}
-        type="usuario"
-        modalId={modalId}
-      />
+      <ModalAgregar onSubmit={handleAgregar} type="usuario" modalId={modalId} />
       <ModalEditar
         onSubmit={handleEdit}
         type="usuario"
         modalId="modalEditar"
         initialData={selectedUser || {}}
+      />
+      <ModalEliminar
+        modalId="modalDelete"
+        type="usuario"
+        itemName={itemToDelete?.name || itemToDelete?.email || ""}
+        onConfirm={() => itemToDelete && handleDelete(itemToDelete._id)}
       />
     </>
   );

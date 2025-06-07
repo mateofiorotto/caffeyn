@@ -1,10 +1,13 @@
 import { useState } from "react";
-import ModalAgregar from "../ModalAgregar";
-import ModalEditar from "../ModalEditar";
+import ModalAgregar from "./modals/Add/ModalAddCoffee";
+import ModalEditar from "./modals/Edit/ModalEditCoffee";
+import ModalEliminar from "./modals/Delete/ModalDelete";
 import { createCafe, deleteCafeById, updateCoffee } from "../../services/api";
 
 function CoffeeTable({ cafes, origins, refreshData }) {
   const [selectedCafe, setSelectedCafe] = useState(null);
+  const [itemToDelete, setItemToDelete] = useState(null);
+
   const modalId = "modalAgregarCafe";
 
   // Funcion para agregar un nuevo café
@@ -25,17 +28,14 @@ function CoffeeTable({ cafes, origins, refreshData }) {
 
   // Función para manejar la eliminación de un café
   const handleDelete = async (id) => {
-    if (window.confirm("¿Estás seguro de eliminar este café?")) {
-      try {
-        await deleteCafeById(id);
-        console.log("Café eliminado exitosamente");
-        refreshData();
-      } catch (error) {
-        console.error("Error al eliminar el café:", error);
-        alert(
-          "Error al eliminar el café. Revisa la consola para más detalles."
-        );
-      }
+    try {
+      await deleteCafeById(id);
+      console.log("Café eliminado exitosamente");
+      refreshData();
+      setItemToDelete(null);
+    } catch (error) {
+      console.error("Error al eliminar el café:", error);
+      alert("Error al eliminar el café. Revisa la consola para más detalles.");
     }
   };
 
@@ -47,8 +47,7 @@ function CoffeeTable({ cafes, origins, refreshData }) {
         console.error("No se encontró el ID del café en el FormData");
         return;
       }
-
-      await updateCoffee(_id, formData); // ← directamente paso el FormData
+      await updateCoffee(_id, formData);
       refreshData();
       setSelectedCafe(null);
     } catch (error) {
@@ -71,14 +70,14 @@ function CoffeeTable({ cafes, origins, refreshData }) {
       <table className="table table-dark table-bordered">
         <thead>
           <tr className="text-center">
-            <th style={{ width: "12%" }}>Nombre</th>
+            <th style={{ width: "15%" }}>Nombre</th>
             <th style={{ width: "20%" }}>Descripción</th>
-            <th style={{ width: "18%" }}>Descripción Corta</th>
-            <th style={{ width: "8%" }}>Precio</th>
-            <th>Tostado</th>
+            <th style={{ width: "15%" }}>Descripción Corta</th>
+            <th style={{ width: "5%" }}>Precio</th>
+            <th style={{ width: "5%" }}>Tostado</th>
             <th style={{ width: "15%" }}>Nota de Sabor</th>
-            <th>Imagen</th>
-            <th>Origen</th>
+            <th style={{ width: "5%" }}>Imagen</th>
+            <th style={{ width: "5%" }}>Origen</th>
             <th style={{ width: "15%" }}>Acciones</th>
           </tr>
         </thead>
@@ -120,7 +119,9 @@ function CoffeeTable({ cafes, origins, refreshData }) {
                 </button>
                 <button
                   className="btn btn-sm btn-danger"
-                  onClick={() => handleDelete(cafe._id)}
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalDelete"
+                  onClick={() => setItemToDelete(cafe)}
                 >
                   Eliminar
                 </button>
@@ -142,6 +143,12 @@ function CoffeeTable({ cafes, origins, refreshData }) {
         modalId="modalEditar"
         initialData={selectedCafe || {}}
         origins={origins}
+      />
+      <ModalEliminar
+        modalId="modalDelete"
+        type="cafe"
+        itemName={itemToDelete?.name || ""}
+        onConfirm={() => itemToDelete && handleDelete(itemToDelete._id)}
       />
     </>
   );
