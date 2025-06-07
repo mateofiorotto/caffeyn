@@ -5,7 +5,9 @@ import ModalEliminar from "./modals/Delete/ModalDelete";
 import { createCafe, deleteCafeById, updateCoffee } from "../../services/api";
 
 function CoffeeTable({ cafes, origins, refreshData }) {
+  // Estado para almacenar el Café seleccionado
   const [selectedCafe, setSelectedCafe] = useState(null);
+  // Estado para el café a eliminar
   const [itemToDelete, setItemToDelete] = useState(null);
 
   const modalId = "modalAgregarCafe";

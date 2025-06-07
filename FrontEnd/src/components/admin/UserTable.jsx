@@ -5,14 +5,17 @@ import ModalEliminar from "./modals/Delete/ModalDelete";
 import { createUser, deleteUserById, updateUser } from "../../services/api";
 
 function UserTable({ users, refreshData }) {
+  // Estado para almacenar el Usuario seleccionado
   const [selectedUser, setSelectedUser] = useState(null);
+  // Estado para el usuario a eliminar
   const [itemToDelete, setItemToDelete] = useState(null);
+  
   const modalId = "modalAgregarUsuario";
 
   // Funcion para agregar un nuevo usuario
   const handleAgregar = async (data) => {
     try {
-      const response = await createUser(data);
+      const response = await createUser(data); 
       if (response && response.data) {
         console.log("Usuario creado:", response.data);
         refreshData();

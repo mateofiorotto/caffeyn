@@ -1,11 +1,13 @@
 import { useState } from "react";
 
 function ModalAddUser({ onSubmit, modalId }) {
+  // Estado local para almacenar los datos del formulario
   const [formData, setFormData] = useState({
     password: "",
     confirmPassword: "",
   });
 
+   // Maneja los cambios en los campos del formulario
   const handleChange = (e) => {
     setFormData((prev) => ({
       ...prev,
@@ -13,19 +15,25 @@ function ModalAddUser({ onSubmit, modalId }) {
     }));
   };
 
+  // Maneja el envío del formulario
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    // Verifica si las contraseñas coinciden
     if (formData.password !== formData.confirmPassword) {
       alert("Las contraseñas no coinciden");
       return;
     }
+
+    // Valida el formato del correo electrónico
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(formData.email)) {
       alert("El email no es válido");
       return;
     }
+    // Excluye el campo confirmPassword antes de enviar
     const { confirmPassword, ...dataToSend } = formData;
-    console.log("📤 Enviando datos del usuario:", dataToSend);
+    
     onSubmit(dataToSend);
     setFormData({
       password: "",

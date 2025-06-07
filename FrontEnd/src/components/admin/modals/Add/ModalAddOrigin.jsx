@@ -1,8 +1,10 @@
 import { useState } from "react";
 
 function ModalAddOrigin({ onSubmit, modalId }) {
+  // Estado local para almacenar los datos del formulario
   const [formData, setFormData] = useState({});
 
+  // Maneja los cambios en los campos del formulario
   const handleChange = (e) => {
     setFormData((prev) => ({
       ...prev,
@@ -10,9 +12,10 @@ function ModalAddOrigin({ onSubmit, modalId }) {
     }));
   };
 
+  // Maneja el envío del formulario
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("📤 Enviando Origen como objeto:", formData);
+
     onSubmit(formData);
     setFormData({});
     document

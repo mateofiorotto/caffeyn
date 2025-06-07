@@ -2,15 +2,14 @@ import { useState } from "react";
 import ModalAgregar from "./modals/Add/ModalAddOrigin";
 import ModalEditar from "./modals/Edit/ModalEditOrigin";
 import ModalEliminar from "./modals/Delete/ModalDelete";
-import {
-  createOrigin,
-  deleteOriginById,
-  updateOrigin,
-} from "../../services/api";
+import { createOrigin, deleteOriginById, updateOrigin, } from "../../services/api";
 
 function OriginTable({ origins, refreshData }) {
+  // Estado para el origen seleccionado al editar
   const [selectedOrigin, setSelectedOrigin] = useState(null);
+  // Estado para el origen seleccionado al eliminar
   const [itemToDelete, setItemToDelete] = useState(null);
+  
   const modalId = "modalAgregarOrigen";
 
   // Funcion para agregar un nuevo origen

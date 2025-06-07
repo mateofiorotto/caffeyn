@@ -13,7 +13,7 @@ function ModalDelete({ modalId, type, itemName, onConfirm }) {
   };
 
   const handleConfirm = () => {
-    onConfirm(); // Lógica que el padre debe ejecutar (eliminar por ID)
+    onConfirm();
     document
       .getElementById(modalId)
       ?.querySelector('[data-bs-dismiss="modal"]')

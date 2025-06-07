@@ -1,12 +1,15 @@
 import { useState, useEffect } from "react";
 
 function ModalEditOrigin({ onSubmit, modalId, initialData = {} }) {
+  // Estado local para manejar los datos del formulario
   const [formData, setFormData] = useState({});
 
+  // Actualiza el formulario cuando cambian los datos iniciales
   useEffect(() => {
     setFormData(initialData);
   }, [initialData]);
 
+  // Maneja los cambios en los inputs
   const handleChange = (e) => {
     setFormData((prev) => ({
       ...prev,
@@ -14,9 +17,10 @@ function ModalEditOrigin({ onSubmit, modalId, initialData = {} }) {
     }));
   };
 
+  // Maneja el envío del formulario
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("📤 Enviando objeto para edición origen:", formData);
+
     onSubmit(formData);
     document
       .getElementById(modalId)

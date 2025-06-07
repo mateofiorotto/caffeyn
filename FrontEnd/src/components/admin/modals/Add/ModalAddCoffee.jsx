@@ -1,8 +1,10 @@
 import { useState } from "react";
 
 function ModalAddCoffee({ onSubmit, modalId, origins = [] }) {
+  // Estado local para almacenar los datos del formulario
   const [formData, setFormData] = useState({});
 
+  // Maneja los cambios en los inputs del formulario
   const handleChange = (e) => {
     setFormData((prev) => ({
       ...prev,
@@ -10,13 +12,15 @@ function ModalAddCoffee({ onSubmit, modalId, origins = [] }) {
     }));
   };
 
+  // Maneja el envío del formulario
   const handleSubmit = (e) => {
     e.preventDefault();
+    // Crea un objeto FormData para poder incluir archivos
     const form = new FormData();
     for (const key in formData) {
       form.append(key, formData[key]);
     }
-    console.log("📤 Enviando FormData Café:", formData);
+
     onSubmit(form);
     setFormData({});
     document

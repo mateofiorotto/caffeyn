@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 
 function ModalEditCoffee({ onSubmit, modalId, initialData = {}, origins = [] }) {
+  // Estado local para manejar los datos del formulario
   const [formData, setFormData] = useState({});
 
+  // Al montar o actualizar `initialData`, actualizamos `formData`
   useEffect(() => {
     if (initialData.origin) {
       const processedData = {
@@ -18,6 +20,7 @@ function ModalEditCoffee({ onSubmit, modalId, initialData = {}, origins = [] }) 
     }
   }, [initialData]);
 
+  // Maneja los cambios en los campos del formulario
   const handleChange = (e) => {
     setFormData((prev) => ({
       ...prev,
@@ -25,13 +28,15 @@ function ModalEditCoffee({ onSubmit, modalId, initialData = {}, origins = [] }) 
     }));
   };
 
+  // Envía el formulario como FormData para permitir archivos
   const handleSubmit = (e) => {
     e.preventDefault();
+    
     const form = new FormData();
     for (const key in formData) {
       form.append(key, formData[key]);
     }
-    console.log("📤 Enviando FormData para edición café:", formData);
+
     onSubmit(form);
     document
       .getElementById(modalId)

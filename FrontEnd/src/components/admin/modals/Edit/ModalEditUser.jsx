@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 
 function ModalEditUser({ onSubmit, modalId, initialData = {} }) {
+  // Estado del formulario
   const [formData, setFormData] = useState({
     password: "",
     confirmPassword: "",
   });
 
+  // Carga los datos del usuario y limpia las contraseñas
   useEffect(() => {
     setFormData({
       ...initialData,
@@ -14,6 +16,7 @@ function ModalEditUser({ onSubmit, modalId, initialData = {} }) {
     });
   }, [initialData]);
 
+  // Maneja cambios en los inputs
   const handleChange = (e) => {
     setFormData((prev) => ({
       ...prev,
@@ -21,23 +24,28 @@ function ModalEditUser({ onSubmit, modalId, initialData = {} }) {
     }));
   };
 
+  // Valida el email
   const validateEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   };
 
+  // Envío del formulario
   const handleSubmit = (e) => {
     e.preventDefault();
+
     if (!validateEmail(formData.email)) {
       alert("El email no es válido");
       return;
     }
+
     if (formData.password !== formData.confirmPassword) {
       alert("Las contraseñas no coinciden");
       return;
     }
+
     const { confirmPassword, ...dataToSend } = formData;
-    console.log("📤 Enviando datos del usuario para editar:", dataToSend);
+    
     onSubmit(dataToSend);
     document
       .getElementById(modalId)
