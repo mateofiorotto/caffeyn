@@ -107,10 +107,10 @@ para la creación de componentes.
 
 ### Por hacer
 - Documentacion (comentarios)
-- Usuarios backend
-- Carrito
+- ~~Usuarios backend~~
+- Carrito (Creo que no es necesario para el proyecto)
 - Revisar codigo frontend (hooks, router, componentes, vistas y logica, manejo del estado)
 - Estilos, animaciones y responsive
-- Redireccion en login / logout
-- Prohibir el acceso a usuarios NO ADMIN al dashboard
+- ~~Redireccion en login / logout~~
+- ~~Prohibir el acceso a usuarios NO ADMIN al dashboard~~
 - Cambiar datos-prueba.txt (las descripciones mas largas, las descripciones cortas de 100 caracteres y agregar precios).

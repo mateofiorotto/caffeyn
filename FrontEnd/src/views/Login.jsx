@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 import { login as loginAPI } from "../services/auth";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 
 function Login() {
@@ -9,8 +9,6 @@ function Login() {
   const [error, setError] = useState("");
   const navigate = useNavigate();
   const { login } = useContext(AuthContext);
-  const location = useLocation();
-  const from = location.state?.from || "/";
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -18,7 +16,7 @@ function Login() {
 
     if (res.token) {
       login(res.token);
-      navigate(from);
+      navigate("/");
     } else {
       setError(res.error || "Error al iniciar sesión");
     }
@@ -26,8 +24,7 @@ function Login() {
 
   return (
     <section className="container d-flex justify-content-center pt-5 pb-5">
-      <div data-aos="fade-up"
-        className="card pt-5 p-4 bg-dark text-light w-50">
+      <div data-aos="fade-up" className="card pt-5 p-4 bg-dark text-light w-50">
         <h2>Login</h2>
         {error && <div className="alert alert-danger">{error}</div>}
         <form className="pb-5" onSubmit={handleSubmit}>

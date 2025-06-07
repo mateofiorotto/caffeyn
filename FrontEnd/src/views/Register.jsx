@@ -14,7 +14,7 @@ const handleSubmit = async (e) => {
   const res = await register(name, email, password);
   if (res.token) {
     saveToken(res.token);
-    navigate("/");
+    navigate("/login");
   } else {
     setError(res.error || "Error al registrarse");
   }
