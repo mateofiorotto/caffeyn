@@ -12,7 +12,7 @@ function UserProfile() {
     }
   }, []);
 
-  if (!user) return <div className="alert alert-warning">No se pudo cargar el perfil.</div>;
+  if (!user) return <p className="fw-bold text-center pt-5 pb-5 mt-5 pb-5 mb-5 fs-2">Hubo un error al cargar el perfil.</p>;
 
   return (
     <section className="container d-flex justify-content-center py-5">

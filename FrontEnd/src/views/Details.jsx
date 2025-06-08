@@ -14,8 +14,8 @@ function Details() {
       .catch((err) => setError(err.message));
   }, [id]);
 
-  if (error) return <div className="alert alert-danger">Error: {error}</div>;
-  if (!cafe) return <p className="text-light">Cargando café...</p>;
+  if (error) return <div className="fw-bold text-center pt-5 pb-5 mt-5 pb-5 mb-5 fs-2">Ocurrió un error</div>;
+  if (!cafe) return <p className="fw-bold text-center pt-5 pb-5 mt-5 pb-5 mb-5 fs-2">Cargando café...</p>;
 
   return (
     <div className="container mt-5 mb-5">

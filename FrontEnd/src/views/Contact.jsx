@@ -3,53 +3,47 @@ import React from "react";
 function Contact() {
   return (
     // Formularios de contacto
-    <div data-aos="fade-up" className="container pt-5 pb-5">
-      <h2 className="text-center my-4 pt-5">Cuentanos tu experiencia</h2>
-      <form className="pb-5">
-        <div className="mb-3">
-          <label htmlFor="name" className="form-label">
-            Nombre
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            id="name"
-            placeholder="Ingrese su nombre"
-            required
-          />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="email" className="form-label">
-            Email
-          </label>
-          <input
-            type="email"
-            className="form-control"
-            id="email"
-            placeholder="Ingrese su email"
-            required
-          />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="message" className="form-label">
-            Mensage
-          </label>
-          <textarea
-            className="form-control"
-            id="message"
-            rows="4"
-            placeholder="Ingrese su mensaje"
-            required
-          ></textarea>
-        </div>
-        <button type="submit" className="btn btn-primary">
-          Enviar
-        </button>
-        <button type="reset" className="btn btn-secondary ms-2">
-          Borrar
-        </button>
-      </form>
-    </div>
+    <section className="container d-flex justify-content-center pt-5 pb-5">
+      <div data-aos="fade-up" className="card pt-5 p-4 bg-dark w-75 text-light">
+        <h2 className="text-center my-4 pt-5">Cuentanos tu experiencia</h2>
+        <form className="p-5 pt-3">
+          <div className="mb-4 mt-4">
+            <label htmlFor="name" className="form-label">
+              Nombre
+            </label>
+            <input
+              type="text"
+              className="form-control bg-dark text-light"
+              id="name"
+              required
+            />
+          </div>
+          <div className="mb-4 mt-4">
+            <label htmlFor="email" className="form-label">
+              Email
+            </label>
+            <input
+              type="email"
+              className="form-control bg-dark text-light"
+              id="email"
+              required
+            />
+          </div>
+          <div className="mb-5 mt-4">
+            <label htmlFor="message" className="form-label">
+              Mensaje
+            </label>
+            <textarea
+              className="form-control bg-dark text-light"
+              id="message"
+              rows="4"
+              required
+            ></textarea>
+          </div>
+          <button type="submit" className="boton-form btn">Enviar</button>
+        </form>
+      </div>
+    </section>
   );
 }
 

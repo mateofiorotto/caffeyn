@@ -107,10 +107,12 @@ para la creación de componentes.
 
 ### Por hacer
 - Documentacion (comentarios)
-- ~~Usuarios backend~~
 - Carrito (Creo que no es necesario para el proyecto)
 - Revisar codigo frontend (hooks, router, componentes, vistas y logica, manejo del estado)
 - Estilos, animaciones y responsive
-- ~~Redireccion en login / logout~~
-- ~~Prohibir el acceso a usuarios NO ADMIN al dashboard~~
-- Cambiar datos-prueba.txt (las descripciones mas largas, las descripciones cortas de 100 caracteres y agregar precios).
+  - btns acciones crud
+  - Iconos NAV (salir, login y registro)
+- Cambiar datos-prueba.txt (las descripciones mas largas, las descripciones cortas de 100 caracteres y agregar precios) + agregar datos a productos ya existentes e imagenes en la carpeta.
+- Etiquetas semanticas 
+- Chequear cualquier error que pueda haber en consola
+- Validaciones del crud al crear cosas pero mandar algo en null. (No se crean pero no dan alerta de ningun tipo)

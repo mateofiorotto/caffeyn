@@ -23,10 +23,10 @@ const handleSubmit = async (e) => {
   return (
     <section className="container d-flex justify-content-center pt-5 pb-5">
       <div data-aos="fade-up"
-        className="card bg-dark text-light p-4 pt-5 w-50">
-        <h2>Registro</h2>
+        className="card bg-dark text-light p-4 pt-5 w-75">
+        <h2 class="text-center">Registro</h2>
         {error && <div className="alert alert-danger">{error}</div>}
-        <form className="pb-5" onSubmit={handleSubmit}>
+        <form className="p-5 pt-3" onSubmit={handleSubmit}>
           <div className="mb-4 mt-4">
             <label>Nombre</label>
             <input
@@ -57,7 +57,7 @@ const handleSubmit = async (e) => {
               required
             />
           </div>
-          <button className="btn btn-success w-100">Registrarse</button>
+          <button type="submit" className="boton-form btn">Registrarse</button>
         </form>
         <div>
           <p className="text-center mt-4">

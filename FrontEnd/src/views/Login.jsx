@@ -24,10 +24,10 @@ function Login() {
 
   return (
     <section className="container d-flex justify-content-center pt-5 pb-5">
-      <div data-aos="fade-up" className="card pt-5 p-4 bg-dark text-light w-50">
-        <h2>Login</h2>
+      <div data-aos="fade-up" className="card pt-5 p-4 bg-dark w-75 text-light">
+        <h2 class="text-center">Login</h2>
         {error && <div className="alert alert-danger">{error}</div>}
-        <form className="pb-5" onSubmit={handleSubmit}>
+        <form className="p-5 pt-3" onSubmit={handleSubmit}>
           <div className="mb-4 mt-4">
             <label>Email</label>
             <input
@@ -48,7 +48,7 @@ function Login() {
               required
             />
           </div>
-          <button className="btn btn-primary w-100">Iniciar Sesión</button>
+          <button type="submit" className="boton-form btn">Iniciar Sesión</button>
         </form>
         <div>
           <p className="text-center mt-4">

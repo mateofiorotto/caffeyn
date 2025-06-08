@@ -27,6 +27,11 @@ body.modal-open {
   padding-right: 0 !important;
 }
 
+label {
+  font-weight: bold !important;
+  text-transform: uppercase !important;
+  margin-bottom: 0.75em;
+}
 
 
 h2 {
@@ -190,17 +195,56 @@ footer {
 }
 
 .coffee-price, .price {
-  font-size: 1.1rem;
+  font-size: 1.2em;
   font-weight: bold;
   color: #ffcc00;
 }
 
+/*BTNS*/
+.boton-form {
+  width: 50% !important;
+  padding: 1em !important;
+  margin: auto !important;
+  display: block !important;
+  transition: 0.35s ease-in-out all;
+  font-weight: bold !important;
+  text-transform: uppercase !important;
+  background-color: black !important;
+  color: white !important;
+}
+
+.boton-form:hover, .btn-comprar-ahora:hover, .btn-agregar-carrito:hover {
+  color: black !important;
+  background-color: white !important;
+  border: 1px solid black;
+}
+
+.btn-comprar-ahora, .btn-agregar-carrito{
+  padding: 1em !important;
+  text-transform: uppercase !important;
+  color: white !important;
+  font-weight: bold !important;
+  border: 1px solid white !important;
+  margin-top: 1em !important;
+  width: 100% !important;
+  text-align: center;
+}
+
+.btn-comprar-ahora {
+  background-color: black !important;
+  color: white !important;
+  border: 1px solid black !important;
+  transition: 0.35s ease-in-out all;
+  font-weight: bold !important;
+  text-transform: uppercase !important;
+  margin-right: 1em; 
+}
+
+
+
 /*MAX-WIDTH: 991px*/
 @media (max-width: 991px) {
 
-  body {
-    font-size: 1.2em !important;
-  }
 
   .navbar-toggler-icon {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
@@ -212,9 +256,8 @@ footer {
 }
 
 .porque-elegirnos {
-  height: 40vh;
+  height: 30vh !important;
 }
-
 
 .porque-elegirnos p {
   font-size: 1.2em;
@@ -223,5 +266,20 @@ footer {
 }
 
 
+  .btn-comprar-ahora, .btn-agregar-carrito{
+    width: 90% !important;
+  }
 
+ }
+
+/*MAX-WIDTH: 575px*/
+@media (max-width: 575px) {
+
+  .porque-elegirnos{
+    height: 50vh !important;
+  }
+
+  .btn-comprar-ahora, .btn-agregar-carrito{
+    width: 100% !important;
+  }
 }
