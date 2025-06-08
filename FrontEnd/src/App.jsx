@@ -8,6 +8,7 @@ import Contact from './views/Contact';
 import Coffee from './views/Details';
 import UserProfile from './views/UserProfile';
 import Dashboard from './views/admin/Dashboard';
+import NotFound from './views/NotFound';
 import Home from './views/Home';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -34,6 +35,7 @@ function App() {
           <Route path="/perfil" element={<UserProfile />} />
           <Route path="/details/:id" element={<Coffee />} />
           <Route path="/admin" element={<Dashboard />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
       <Footer />

@@ -7,35 +7,39 @@ import { getUserFromToken } from "../../services/auth";
 import { useNavigate } from "react-router-dom";
 
 function Dashboard() {
-  // Estados locales para almacenar los datos obtenidos desde el backend
   const [cafes, setCafes] = useState([]);
   const [origins, setOrigins] = useState([]);
   const [users, setUsers] = useState([]);
-
-  // Estado para controlar la tabla seleccionada
   const [selectedTable, setSelectedTable] = useState("coffees");
+  const [isCheckingAuth, setIsCheckingAuth] = useState(true); //para evitar el "parpadeo" q hay al entrar al admin si no sos user
+
   const navigate = useNavigate();
 
-  // Función que actualiza los datos desde la API
   const refreshData = () => {
     fetchCafes().then(setCafes);
     fetchOrigens().then(setOrigins);
     fetchUsers().then(setUsers);
   };
 
-  // UseEffect que se ejecuta al montarse el componente
   useEffect(() => {
-    const user = getUserFromToken(); // Obtiene el usuario autenticado
+    const user = getUserFromToken();
 
-    // Si no hay usuario autenticado o no es admin, redirige al inicio
     if (!user) {
-      navigate("/login");
-    } else if (user.role !== "admin") {
-      navigate("/");
-    } else {
-      refreshData();
+      navigate("/login", { replace: true });
+      return;
     }
+
+    if (user.role !== "admin") {
+      navigate("/", { replace: true });
+      return;
+    }
+
+    // Si pasa validaciones
+    refreshData();
+    setIsCheckingAuth(false);
   }, [navigate]);
+
+  if (isCheckingAuth) return null;
 
   return (
     <div className="container my-4">

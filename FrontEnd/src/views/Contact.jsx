@@ -4,7 +4,7 @@ function Contact() {
   return (
     // Formularios de contacto
     <section className="container d-flex justify-content-center pt-5 pb-5">
-      <div data-aos="fade-up" className="card pt-5 p-4 bg-dark w-75 text-light">
+      <div data-aos="fade-up" className="form-container card pt-5 p-4 bg-dark text-light">
         <h2 className="text-center my-4 pt-5">Cuentanos tu experiencia</h2>
         <form className="p-5 pt-3">
           <div className="mb-4 mt-4">

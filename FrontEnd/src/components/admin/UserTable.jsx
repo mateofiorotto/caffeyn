@@ -62,13 +62,13 @@ function UserTable({ users, refreshData }) {
 
   return (
     <>
-      <h2>Usuarios</h2>
+      <h2 className="text-center mb-0">Usuarios</h2>
       <button
-        className="btn btn-success mb-3"
+        className="btn btn-agregar-crud"
         data-bs-toggle="modal"
         data-bs-target={`#${modalId}`}
       >
-        Agregar Usuario
+        <i className="bi bi-plus me-2"></i>Agregar Usuario
       </button>
       <table className="table table-dark table-bordered">
         <thead>
@@ -89,22 +89,22 @@ function UserTable({ users, refreshData }) {
               <td>{user.name}</td>
               <td>{user.email}</td>
               <td>{user.role}</td>
-              <td className="text-center">
+              <td className="text-center align-middle">
                 <button
-                  className="btn btn-sm btn-warning me-2"
+                  className="btn btn-editar-crud me-3"
                   data-bs-toggle="modal"
                   data-bs-target="#modalEditar"
                   onClick={() => setSelectedUser(user)}
                 >
-                  Editar
+                  <i className="bi bi-pen-fill text-light fs-5"><span className="d-none">Editar</span></i>
                 </button>
                 <button
-                  className="btn btn-sm btn-danger"
+                  className="btn btn-eliminar-crud"
                   data-bs-toggle="modal"
                   data-bs-target="#modalDelete"
                   onClick={() => setItemToDelete(user)}
                 >
-                  Eliminar
+                  <i className="bi bi-trash-fill fs-5 text-light"><span className="d-none">Eliminar</span></i>
                 </button>
               </td>
             </tr>

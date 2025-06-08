@@ -54,7 +54,7 @@ function Navbar() {
                 {role === 'admin' && (
                   <li><Link className="btn btn-link nav-link" to="/admin"><i className="bi bi-gear-fill me-2"><span className="d-none">Icono Dashboard</span></i>Dashboard</Link></li>
                 )}
-                <li><Link className="btn btn-link nav-link" onClick={handleLogout}>Salir</Link></li>
+                <li><Link className="btn btn-link nav-link" onClick={handleLogout}><i className="bi bi-box-arrow-in-right me-2"><span className="d-none">Icono Salir</span></i>Salir</Link></li>
               </>
             ) : (
               <>

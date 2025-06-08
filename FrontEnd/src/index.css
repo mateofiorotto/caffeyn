@@ -240,7 +240,59 @@ footer {
   margin-right: 1em; 
 }
 
+/*FORMS*/
+.form-container{
+  width: 75% !important;
+}
 
+/*OTROS*/
+.error-404 {
+  height: 80vh;
+}
+
+.error-404 p {
+  font-size: 1.5em !important;
+}
+
+.emoji-404 {
+  font-size: 18.5em;
+}
+
+/*CRUD*/
+.btn-editar-crud {
+  background-color: blue !important;
+  transition: 0.35s ease-in-out all;
+}
+
+.btn-editar-crud:hover {
+  background-color: black !important;
+}
+
+.btn-eliminar-crud {
+  background-color: red !important;
+  transition: 0.35s ease-in-out all;
+}
+
+.btn-eliminar-crud:hover {
+  background-color: black !important;
+}
+
+.btn-agregar-crud {
+  background-color: rgb(43, 165, 43) !important;
+  color: white !important;
+  font-size: 1.25em !important;
+  font-weight: bold !important;
+  text-transform: uppercase;
+  transition: 0.35s ease-in-out all;
+  margin: 2em auto !important;
+  display: block !important;
+  text-align: center !important;
+}
+
+.btn-agregar-crud:hover {
+  background-color: rgb(27, 125, 27) !important;
+
+}
 
 /*MAX-WIDTH: 991px*/
 @media (max-width: 991px) {
@@ -265,9 +317,16 @@ footer {
   font-weight: 400;
 }
 
-
   .btn-comprar-ahora, .btn-agregar-carrito{
     width: 90% !important;
+  }
+
+  .boton-form {
+    width: 100% !important;
+  }
+
+  .form-container {
+    width: 100% !important;
   }
 
  }

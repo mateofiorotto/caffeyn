@@ -109,9 +109,8 @@ para la creación de componentes.
 - Documentacion (comentarios)
 - Carrito (Creo que no es necesario para el proyecto)
 - Revisar codigo frontend (hooks, router, componentes, vistas y logica, manejo del estado)
-- Estilos, animaciones y responsive
-  - btns acciones crud
-  - Iconos NAV (salir, login y registro)
+- Estilos que puedan faltar
+- imgs
 - Cambiar datos-prueba.txt (las descripciones mas largas, las descripciones cortas de 100 caracteres y agregar precios) + agregar datos a productos ya existentes e imagenes en la carpeta.
 - Etiquetas semanticas 
 - Chequear cualquier error que pueda haber en consola
