@@ -22,7 +22,7 @@ function ModalDelete({ modalId, type, itemName, onConfirm }) {
 
   return (
     <div className="modal fade" id={modalId} tabIndex="-1" aria-hidden="true">
-      <div className="modal-dialog modal-dialog-centered">
+      <div className="modal-dialog modal-lg modal-dialog-centered">
         <div className="modal-content bg-dark text-light">
           <div className="modal-header">
             <h5 className="modal-title text-danger">Confirmar Eliminación</h5>
@@ -35,7 +35,10 @@ function ModalDelete({ modalId, type, itemName, onConfirm }) {
           </div>
           <div className="modal-body">
             <p>
-              ¿Estás seguro de que querés eliminar <strong>{getLabel()}</strong> <em>{itemName}</em>?
+              ¿Estás seguro de que querés eliminar {getLabel()}{" "}
+              <strong>{itemName}</strong>?
+            </p>
+            <p className="text-warning mb-0">
               Esta acción no se puede deshacer.
             </p>
           </div>
