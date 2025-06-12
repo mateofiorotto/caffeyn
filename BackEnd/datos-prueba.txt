@@ -48,21 +48,25 @@ CAFES (2 x ORIGEN)
 ORIGEN: Colombia
 ------------------
 {
-    "name": "Colombia Supremo",
-    "description": "Café de grano grande y uniforme, reconocido por su sabor balanceado y suave acidez.",
-    "roastLevel": "Medio",
-    "flavorNote": "Caramelo, nuez, chocolate con un toque cítrico",
-    "image": "cafe-colombia-01.jpg",
-    "origin": "(ID)"
+  "name": "Colombia Supremo",
+  "short_description": "Café de grano grande y uniforme, reconocido por su sabor balanceado y suave acidez.",
+  "description": "El Colombia Supremo proviene de regiones montañosas que ofrecen un microclima ideal para el cultivo de granos de alta calidad. Su grano grande y uniforme proporciona una taza limpia con notas de caramelo, nuez y chocolate, acompañadas por una acidez cítrica sutil. Ideal para quienes buscan un café equilibrado para cualquier momento del día.",
+  "roastLevel": "Medio",
+  "flavorNote": "Caramelo, nuez, chocolate con un toque cítrico",
+  "image": "cafe-colombia-01.jpg",
+  "origin": "(ID)",
+  "price": 14.99
 }
 
 {
-    "name": "Colombia Excelso",
-    "description": "Café de alta calidad con acidez brillante y cuerpo medio, ideal para métodos filtrados.",
-    "roastLevel": "Claro",
-    "flavorNote": "Frutas cítricas, azúcar morena, notas florales",
-    "image": "cafe-colombia-02.jpg",
-    "origin": "(ID)"
+  "name": "Colombia Excelso",
+  "short_description": "Café de alta calidad con acidez brillante y cuerpo medio, ideal para métodos filtrados.",
+  "description": "Cultivado en fincas de altitudes elevadas, el Colombia Excelso es un café versátil y aromático. Destaca por su acidez brillante y notas cítricas y florales que lo hacen perfecto para métodos de preparación como V60 o Chemex. Su dulzor natural y cuerpo medio lo convierten en una experiencia refinada.",
+  "roastLevel": "Claro",
+  "flavorNote": "Frutas cítricas, azúcar morena, notas florales",
+  "image": "cafe-colombia-02.jpg",
+  "origin": "(ID)",
+  "price": 15.49
 }
 
 ------------------
@@ -70,21 +74,25 @@ ORIGEN: Yemen
 ------------------
 
 {
-    "name": "Yemen Mocha Matari",
-    "description": "Café exótico y antiguo, cultivado en terrazas montañosas con métodos tradicionales.",
-    "roastLevel": "Oscuro",
-    "flavorNote": "Vino tinto, especias, chocolate amargo",
-    "image": "cafe-yemen-01.jpg",
-    "origin": "(ID)"
+  "name": "Yemen Mocha Matari",
+  "short_description": "Café exótico y antiguo, cultivado en terrazas montañosas con métodos tradicionales.",
+  "description": "El Yemen Mocha Matari es una joya ancestral del mundo del café. Cultivado artesanalmente en terrazas empinadas, ofrece un perfil complejo y profundo, con cuerpo denso y notas intensas de vino tinto, especias y chocolate amargo. Una experiencia ideal para paladares experimentados y aventureros.",
+  "roastLevel": "Oscuro",
+  "flavorNote": "Vino tinto, especias, chocolate amargo",
+  "image": "cafe-yemen-01.jpg",
+  "origin": "(ID)",
+  "price": 18.99
 }
 
 {
-    "name": "Yemen Haraaz",
-    "description": "Café de altura con sabor intenso, producido artesanalmente en la región de Haraaz.",
-    "roastLevel": "Medio",
-    "flavorNote": "Pasas, dátiles, toques de cuero y flores secas",
-    "image": "cafe-yemen-02.jpg",
-    "origin": "(ID)"
+  "name": "Yemen Haraaz",
+  "short_description": "Café de altura con sabor intenso, producido artesanalmente en la región de Haraaz.",
+  "description": "Directamente de las históricas montañas de Haraaz, este café es cultivado en pequeñas parcelas por agricultores que conservan técnicas milenarias. Su sabor es intenso y complejo, con notas de pasas, dátiles y un fondo terroso que recuerda al cuero y flores secas. Un café único y de edición limitada.",
+  "roastLevel": "Medio",
+  "flavorNote": "Pasas, dátiles, toques de cuero y flores secas",
+  "image": "cafe-yemen-02.jpg",
+  "origin": "(ID)",
+  "price": 19.49
 }
 
 ------------------
@@ -92,20 +100,24 @@ ORIGEN: Etiopia
 ------------------
 
 {
-    "name": "Etiopía Yirgacheffe",
-    "description": "Café etíope de renombre mundial, conocido por su perfil limpio y afrutado.",
-    "roastLevel": "Claro",
-    "flavorNote": "Jazmín, limón, té negro",
-    "image": "cafe-etiopia-01.jpg",
-    "origin": "(ID)"
+  "name": "Etiopía Yirgacheffe",
+  "short_description": "Café etíope de renombre mundial, conocido por su perfil limpio y afrutado.",
+  "description": "Etiopía Yirgacheffe es considerado uno de los cafés más elegantes del mundo. Cultivado en la región homónima, su perfil afrutado y floral destaca en métodos de filtrado. Ideal para quienes buscan una taza refinada con notas de jazmín, limón y té negro, y una acidez viva.",
+  "roastLevel": "Claro",
+  "flavorNote": "Jazmín, limón, té negro",
+  "image": "cafe-etiopia-01.jpg",
+  "origin": "(ID)",
+  "price": 16.99
 }
 
 {
-    "name": "Etiopía Sidamo",
-    "description": "Café cultivado en las tierras altas del sur de Etiopía, con gran complejidad de sabores.",
-    "roastLevel": "Medio",
-    "flavorNote": "Frutas rojas, lavanda, chocolate suave",
-    "image": "cafe-etiopia-02.jpg",
-    "origin": "(ID)"
+  "name": "Etiopía Sidamo",
+  "short_description": "Café cultivado en las tierras altas del sur de Etiopía, con gran complejidad de sabores.",
+  "description": "Este café etíope proviene de las tierras altas de Sidamo, donde se cultiva bajo sombra natural. Presenta un perfil dulce y aromático con notas a frutas rojas, lavanda y un suave toque a chocolate. De cuerpo sedoso y final prolongado, es perfecto para degustar lentamente.",
+  "roastLevel": "Medio",
+  "flavorNote": "Frutas rojas, lavanda, chocolate suave",
+  "image": "cafe-etiopia-02.jpg",
+  "origin": "(ID)",
+  "price": 17.49
 }
 

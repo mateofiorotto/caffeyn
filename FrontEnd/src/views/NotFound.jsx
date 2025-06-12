@@ -6,6 +6,7 @@ function NotFound() {
             <h2 className="text-center">404 - No encontrado</h2>
             <i className="bi bi-emoji-frown emoji-404"></i>
             <p className="text-center">Parece que el recurso o página que buscas no se encuentra disponible</p>
+            <a className="btn btn-primary mt-5 volver" href="/">Volver a la home</a>
         </div>
     </section>
   );

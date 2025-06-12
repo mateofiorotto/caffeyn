@@ -43,9 +43,9 @@ function Dashboard() {
 
   return (
     <div className="container my-4">
-      <h1 className="mb-4">Panel de Administración</h1>
+      <h2 className="mt-5 mb-5 text-center fw-bold">Panel de Administración</h2>
       {/* Botones para alternar entre las diferentes tablas */}
-      <div className="mb-4 d-flex gap-3">
+      <div className="mb-4 d-flex gap-3 justify-content-center mb-5">
         <button
           className={`btn ${
             selectedTable === "coffees" ? "btn-primary" : "btn-secondary"

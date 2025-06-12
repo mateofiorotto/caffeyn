@@ -106,11 +106,11 @@ function ModalEditUser({ onSubmit, modalId, initialData = {} }) {
           <div className="modal-body">
             <form onSubmit={handleSubmit} ref={formRef} noValidate>
               <div className="mb-3">
-                <label htmlFor="name">
+                <label htmlFor="name-edit">
                   Nombre <span className="text-danger">*</span>
                 </label>
                 <input
-                  id="name"
+                  id="name-edit"
                   name="name"
                   required
                   minLength={2}
@@ -126,11 +126,11 @@ function ModalEditUser({ onSubmit, modalId, initialData = {} }) {
               </div>
 
               <div className="mb-3">
-                <label htmlFor="email">
+                <label htmlFor="email-edit">
                   Email <span className="text-danger">*</span>
                 </label>
                 <input
-                  id="email"
+                  id="email-edit"
                   name="email"
                   type="email"
                   required
@@ -145,11 +145,11 @@ function ModalEditUser({ onSubmit, modalId, initialData = {} }) {
               </div>
 
               <div className="mb-3">
-                <label htmlFor="role">
+                <label htmlFor="role-edit">
                   Rol <span className="text-danger">*</span>
                 </label>
                 <select
-                  id="role"
+                  id="role-edit"
                   name="role"
                   required
                   value={formData.role || ""}
@@ -169,12 +169,12 @@ function ModalEditUser({ onSubmit, modalId, initialData = {} }) {
               </div>
 
               <div className="mb-3">
-                <label htmlFor="password">
+                <label htmlFor="password-edit">
                   Contraseña <span className="text-danger">*</span>
                 </label>
                 <input
                   type="password"
-                  id="password"
+                  id="password-edit"
                   name="password"
                   required
                   minLength={8}
@@ -189,12 +189,12 @@ function ModalEditUser({ onSubmit, modalId, initialData = {} }) {
               </div>
 
               <div className="mb-3">
-                <label htmlFor="confirmPassword">
+                <label htmlFor="confirmPassword-edit">
                   Confirmar Contraseña <span className="text-danger">*</span>
                 </label>
                 <input
                   type="password"
-                  id="confirmPassword"
+                  id="confirmPassword-edit"
                   name="confirmPassword"
                   required
                   value={formData.confirmPassword}

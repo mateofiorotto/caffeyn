@@ -254,8 +254,24 @@ footer {
   font-size: 1.5em !important;
 }
 
-.emoji-404 {
+.emoji-404, .emoji-contacto {
   font-size: 18.5em;
+}
+
+.volver {
+  font-size: 1.25em !important;
+  font-weight: bold !important;
+  text-transform: uppercase;
+  transition: 0.35s ease-in-out all;
+  margin: 2em auto !important;
+  display: block !important;
+  text-align: center !important;
+  border: none !important;
+}
+
+.volver:hover {
+  background-color: black !important;
+
 }
 
 /*CRUD*/

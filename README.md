@@ -106,12 +106,7 @@ para la creación de componentes.
     Una vez que npm te de la ip, entra y ya podes probar la app.
 
 ### Por hacer
-- Documentacion (comentarios)
-- Carrito (Creo que no es necesario para el proyecto)
-- Revisar codigo frontend (hooks, router, componentes, vistas y logica, manejo del estado)
+- Documentacion (comentarios front)
 - Estilos que puedan faltar
-- imgs
-- Cambiar datos-prueba.txt (las descripciones mas largas, las descripciones cortas de 100 caracteres y agregar precios) + agregar datos a productos ya existentes e imagenes en la carpeta.
 - Etiquetas semanticas 
-- Chequear cualquier error que pueda haber en consola
-- Validaciones del crud al crear cosas pero mandar algo en null. (No se crean pero no dan alerta de ningun tipo)
+- Carrito ?

@@ -70,7 +70,7 @@ function UserTable({ users, refreshData }) {
       >
         <i className="bi bi-plus me-2"></i>Agregar Usuario
       </button>
-      <table className="table table-dark table-bordered">
+      <table className="table table-dark table-bordered text-break mb-5">
         <thead>
           <tr className="text-center">
             <th className="text-nowrap" style={{ width: "15%" }}>

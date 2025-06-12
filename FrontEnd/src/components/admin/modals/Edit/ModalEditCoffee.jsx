@@ -1,6 +1,11 @@
 import { useState, useEffect, useRef } from "react";
 
-function ModalEditCoffee({ onSubmit, modalId, initialData = {}, origins = [] }) {
+function ModalEditCoffee({
+  onSubmit,
+  modalId,
+  initialData = {},
+  origins = [],
+}) {
   const [formData, setFormData] = useState({});
   const [touched, setTouched] = useState({});
   const [formValid, setFormValid] = useState(false);
@@ -49,14 +54,6 @@ function ModalEditCoffee({ onSubmit, modalId, initialData = {}, origins = [] }) 
       setFormValid(formRef.current.checkValidity());
     }
   }, [formData, touched]);
-
-  /* const resetFormulario = () => {
-    setFormData({});
-    setTouched({});
-    setFormValid(false);
-    if (formRef.current) formRef.current.reset();
-  }; */
-
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = new FormData();
@@ -105,7 +102,7 @@ function ModalEditCoffee({ onSubmit, modalId, initialData = {}, origins = [] }) 
           </div>
           <div className="modal-body">
             <form onSubmit={handleSubmit} ref={formRef} noValidate>
-              <div className="row">
+              <div className="row justify-content-center">
                 {/* Columna izquierda */}
                 <div className="col-md-6">
                   <div className="mb-3">
@@ -160,7 +157,9 @@ function ModalEditCoffee({ onSubmit, modalId, initialData = {}, origins = [] }) 
                       required
                       minLength={10}
                       maxLength={100}
-                      className={`form-control ${validarCampo("shortDescription")}`}
+                      className={`form-control ${validarCampo(
+                        "shortDescription"
+                      )}`}
                       onChange={handleChange}
                       onBlur={handleBlur}
                     />
@@ -170,23 +169,34 @@ function ModalEditCoffee({ onSubmit, modalId, initialData = {}, origins = [] }) 
                   </div>
 
                   <div className="mb-3">
-                    <label htmlFor="roastLevel">
-                      Tostado <span className="text-danger">*</span>
-                    </label>
+                    <label htmlFor="image">Imagen (archivo)</label>
                     <input
-                      id="roastLevel"
-                      name="roastLevel"
-                      value={formData.roastLevel || ""}
-                      required
-                      maxLength={100}
-                      className={`form-control ${validarCampo("roastLevel")}`}
+                      type="file"
+                      id="image"
+                      name="image"
+                      accept="image/*"
+                      className={`form-control ${validarCampo("image")}`}
                       onChange={handleChange}
                       onBlur={handleBlur}
                     />
                     <div className="invalid-feedback">
-                      El nivel de tostado es obligatorio.
+                      Selecciona un archivo de imagen válido.
                     </div>
                   </div>
+
+                  {formData.img && (
+                    <div className="mb-3">
+                      <label>Imagen actual:</label>
+                      <div>
+                        <img
+                          src={formData.img}
+                          alt="Imagen actual del producto"
+                          style={{ maxWidth: "200px", maxHeight: "200px" }}
+                          className="img-fluid"
+                        />
+                      </div>
+                    </div>
+                  )}
                 </div>
 
                 {/* Columna derecha */}
@@ -211,23 +221,6 @@ function ModalEditCoffee({ onSubmit, modalId, initialData = {}, origins = [] }) 
                   </div>
 
                   <div className="mb-3">
-                    <label htmlFor="image">Imagen (archivo) <span className="text-danger">*</span></label>
-                    <input
-                      type="file"
-                      id="image"
-                      name="image"
-                      required
-                      accept="image/*"
-                      className={`form-control ${validarCampo("image")}`}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                    />
-                    <div className="invalid-feedback">
-                      Selecciona un archivo de imagen válido.
-                    </div>
-                  </div>
-
-                  <div className="mb-3">
                     <label htmlFor="origin">
                       Origen <span className="text-danger">*</span>
                     </label>
@@ -240,7 +233,9 @@ function ModalEditCoffee({ onSubmit, modalId, initialData = {}, origins = [] }) 
                       onChange={handleChange}
                       onBlur={handleBlur}
                     >
-                      <option value="">Selecciona un origen</option>
+                      <option value="" disabled>
+                        Selecciona un origen
+                      </option>
                       {origins.map((origin) => (
                         <option key={origin._id} value={origin._id}>
                           {origin.country}
@@ -270,6 +265,24 @@ function ModalEditCoffee({ onSubmit, modalId, initialData = {}, origins = [] }) 
                     />
                     <div className="invalid-feedback">
                       El precio debe ser un número positivo.
+                    </div>
+                  </div>
+                  <div className="mb-3">
+                    <label htmlFor="roastLevel">
+                      Tostado <span className="text-danger">*</span>
+                    </label>
+                    <input
+                      id="roastLevel"
+                      name="roastLevel"
+                      value={formData.roastLevel || ""}
+                      required
+                      maxLength={100}
+                      className={`form-control ${validarCampo("roastLevel")}`}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                    />
+                    <div className="invalid-feedback">
+                      El nivel de tostado es obligatorio.
                     </div>
                   </div>
                 </div>

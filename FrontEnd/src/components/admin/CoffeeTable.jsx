@@ -69,7 +69,7 @@ function CoffeeTable({ cafes, origins, refreshData }) {
         <i className="bi bi-plus me-2"></i>Agregar Café
       </button>
 
-      <table className="table table-dark table-bordered">
+      <table className="table table-dark table-bordered text-break mb-5">
         <thead>
           <tr className="text-center">
             <th style={{ width: "15%" }}>Nombre</th>

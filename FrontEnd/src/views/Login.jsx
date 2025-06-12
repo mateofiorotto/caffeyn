@@ -25,7 +25,7 @@ function Login() {
   return (
     <section className="container d-flex justify-content-center pt-5 pb-5">
       <div data-aos="fade-up" className="card pt-5 p-4 bg-dark form-container text-light">
-        <h2 class="text-center">Login</h2>
+        <h2 className="text-center">Login</h2>
         {error && <div className="alert alert-danger">{error}</div>}
         <form className="p-5 pt-3" onSubmit={handleSubmit}>
           <div className="mb-4 mt-4">
