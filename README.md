@@ -55,7 +55,7 @@ Todas las entidades cuentan con sus operaciones CRUD manejadas por los controlad
 
 - Frontend realizado en React y conectado a la API
 
-Conectamos la API con desde el front con el backend utilizando fetch.
+Se conecta la API con desde el front con el backend utilizando fetch.
 
 ### Requerimientos Obligatorios (FRONTEND)
 - Componentes Funcionales y Hooks: Utilizar componentes funcionales y hooks
@@ -65,17 +65,19 @@ para la creación de componentes.
 
 - División de Componentes: Mantener una clara división de componentes.
 
-
+La web cuenta con division de componentes por ejemplo para las Card de cafes, la lista de cafes, el cafe individual, el navbar, footer, etc.
 
 - Enrutamiento: Utilizar Routers para las distintas páginas.
 
-
+Se utiliza React Router para el manejo de rutas.
 
 - Separación de Vistas y Lógica de APIs: Mantener las vistas separadas de la lógica de interacción con las APIs.
 
-
+Se separa la vista de la logica de apis, haciendo llamados a la api en archivos aparte y trayendolos a la vista.
 
 - Manejo del Estado: Gestionar correctamente el estado de la aplicación
+
+Se utilizan useState para secciones del crud, para la autenticacion, las vistas de cafe, alertas y validaciones, etc.
 
 ### Como usarlo
 1. Clone repository
@@ -110,3 +112,4 @@ para la creación de componentes.
 - Estilos que puedan faltar
 - Etiquetas semanticas 
 - Carrito ?
+- cambiar api_url por .env
