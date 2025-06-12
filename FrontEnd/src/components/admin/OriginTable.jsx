@@ -18,7 +18,7 @@ function OriginTable({ origins, refreshData }) {
       const response = await createOrigin(data);
       if (response && response.data) {
         console.log("Origen creado:", response.data);
-        refreshData();
+        refreshData(); // Actualiza la lista de orígenes
       } else {
         console.error("Error al crear origen:", response);
         alert("No se pudo crear el origen. Revisa la consola.");
@@ -34,7 +34,7 @@ function OriginTable({ origins, refreshData }) {
       await deleteOriginById(id);
       console.log("Origen eliminado exitosamente");
       refreshData();
-      setItemToDelete(null);
+      setItemToDelete(null); // Limpia el estado
     } catch (error) {
       console.error("Error al eliminar el origen:", error);
       alert(

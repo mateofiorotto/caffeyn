@@ -18,7 +18,7 @@ function CoffeeTable({ cafes, origins, refreshData }) {
       const response = await createCafe(data);
       if (response && response.data) {
         console.log("Café creado:", response.data);
-        refreshData();
+        refreshData(); // Refresca la lista de cafés
       } else {
         console.error("Error al crear café:", response);
         alert("No se pudo crear el café. Revisa la consola.");
@@ -34,7 +34,7 @@ function CoffeeTable({ cafes, origins, refreshData }) {
       await deleteCafeById(id);
       console.log("Café eliminado exitosamente");
       refreshData();
-      setItemToDelete(null);
+      setItemToDelete(null); // Limpia el estado de eliminación
     } catch (error) {
       console.error("Error al eliminar el café:", error);
       alert("Error al eliminar el café. Revisa la consola para más detalles.");

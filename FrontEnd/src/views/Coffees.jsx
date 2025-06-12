@@ -3,8 +3,10 @@ import { fetchCafes } from "../services/api";
 import CoffeeCard from "../components/CoffeeCard";
 
 function Coffees() {
+  // Estado para almacenar la lista de cafés
   const [cafes, setCafes] = useState([]);
 
+  // Al montar el componente, se obtienen los cafés desde la API
   useEffect(() => {
     fetchCafes().then(setCafes);
   }, []);

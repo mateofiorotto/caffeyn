@@ -18,7 +18,7 @@ function UserTable({ users, refreshData }) {
       const response = await createUser(data); 
       if (response && response.data) {
         console.log("Usuario creado:", response.data);
-        refreshData();
+        refreshData(); // Refresca la tabla
       } else {
         console.error("Error al crear usuario:", response);
         alert("No se pudo crear el usuario. Revisa la consola.");
@@ -34,7 +34,7 @@ function UserTable({ users, refreshData }) {
       await deleteUserById(id);
       console.log("Usuario eliminado exitosamente");
       refreshData();
-      setItemToDelete(null);
+      setItemToDelete(null); // Limpia el estado
     } catch (error) {
       console.error("Error al eliminar el usuario:", error);
       alert(
@@ -53,7 +53,7 @@ function UserTable({ users, refreshData }) {
       }
       await updateUser(_id, cleanData);
       refreshData();
-      setSelectedUser(null);
+      setSelectedUser(null); // Limpia la selección
     } catch (error) {
       console.error("Error al actualizar el usuario:", error);
       alert("Error al actualizar el usuario. Revisa la consola.");

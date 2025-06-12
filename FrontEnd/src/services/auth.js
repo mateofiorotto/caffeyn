@@ -17,8 +17,7 @@ export async function login(email, password) {
   });
 
   const data = await res.json();
-  //console.log("Respuesta del backend:", data);
-
+  
   if (data.msg === 'success' && data.data && data.data.jwt) {
     
     return { token: data.data.jwt };

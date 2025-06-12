@@ -28,9 +28,9 @@ export async function createCafe(data) {
   const res = await fetch(`${API_URL}/coffees`, {
     method: "POST",
     headers: {
-      Authorization: `Bearer ${token}`, // NO poner Content-Type manualmente
+      Authorization: `Bearer ${token}`, // No se define Content-Type manualmente
     },
-    body: data, // ya es FormData
+    body: data, // Se envía FormData (con archivos)
   });
 
   const json = await res.json();

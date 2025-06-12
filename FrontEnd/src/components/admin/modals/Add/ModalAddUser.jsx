@@ -1,23 +1,30 @@
 import { useState, useRef, useEffect } from "react";
 
 function ModalAddUser({ onSubmit, modalId }) {
+  // Estado del formulario, inicializa con campos de contraseña
   const [formData, setFormData] = useState({
     password: "",
     confirmPassword: "",
   });
+  // Estado para campos tocados (blur), útil para mostrar validación
   const [touched, setTouched] = useState({});
+  // Estado que indica si todo el formulario es válido
   const [formValid, setFormValid] = useState(false);
+  // Referencia al formulario
   const formRef = useRef(null);
 
+  // Maneja el cambio en los inputs y actualiza el estado formData
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  // Marca un campo como tocado (para validación visual)
   const handleBlur = (e) => {
     setTouched((prev) => ({ ...prev, [e.target.name]: true }));
   };
 
+  // Valida individualmente un campo según su validez nativa
   const validarCampo = (name) => {
     const el = formRef.current?.elements[name];
     if (!el) return "";
@@ -25,11 +32,13 @@ function ModalAddUser({ onSubmit, modalId }) {
     return !el.checkValidity() ? "is-invalid" : "";
   };
 
+  // Valida el email
   const validarEmail = () => {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return regex.test(formData.email || "");
   };
 
+  // Efecto que valida el formulario completo al modificar campos o tocarlos
   useEffect(() => {
     if (formRef.current) {
       const formOk =
@@ -40,6 +49,7 @@ function ModalAddUser({ onSubmit, modalId }) {
     }
   }, [formData, touched]);
 
+  // Restaura el formulario a su estado inicial
   const resetFormulario = () => {
     setFormData({ password: "", confirmPassword: "" });
     setTouched({});
@@ -47,6 +57,7 @@ function ModalAddUser({ onSubmit, modalId }) {
     if (formRef.current) formRef.current.reset();
   };
 
+  // Maneja el envío del formulario, con validación extra de email y contraseñas
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -60,15 +71,18 @@ function ModalAddUser({ onSubmit, modalId }) {
       return;
     }
 
+    // Se excluye confirmPassword del envío
     const { confirmPassword, ...dataToSend } = formData;
     onSubmit(dataToSend);
 
+    // Cierra el modal manualmente
     document
       .getElementById(modalId)
       ?.querySelector('[data-bs-dismiss="modal"]')
       ?.click();
   };
 
+  // Limpia el formulario automáticamente al cerrarse el modal
   useEffect(() => {
     const modalElement = document.getElementById(modalId);
     if (!modalElement) return;

@@ -1,36 +1,45 @@
 import { useState, useRef, useEffect } from "react";
 
 function ModalAddCoffee({ onSubmit, modalId, origins = [] }) {
+  // Estado para guardar los datos del formulario
   const [formData, setFormData] = useState({});
+  // Estado para marcar qué campos fueron tocados (para mostrar validación)
   const [touched, setTouched] = useState({});
+  // Estado para indicar si el formulario es válido
   const [formValid, setFormValid] = useState(false);
+  // Referencia al formulario
   const formRef = useRef(null);
 
+  // Maneja los cambios en los campos del formulario
   const handleChange = (e) => {
     const { name, value, files } = e.target;
     setFormData((prev) => ({
       ...prev,
-      [name]: files ? files[0] : value,
+      [name]: files ? files[0] : value, // Si es archivo, guarda el archivo, si no, el valor
     }));
   };
 
+  // Marca un campo como "tocado" cuando pierde el foco
   const handleBlur = (e) => {
     setTouched((prev) => ({ ...prev, [e.target.name]: true }));
   };
 
+  // Verifica la validez de un campo si fue tocado
   const validarCampo = (name) => {
     const el = formRef.current?.elements[name];
     if (!el) return "";
     if (!touched[name]) return "";
-    return !el.checkValidity() ? "is-invalid" : "";
+    return !el.checkValidity() ? "is-invalid" : ""; // Clase Bootstrap para error
   };
 
+  // Cada vez que cambia el formulario o los campos tocados, recalcula validez
   useEffect(() => {
     if (formRef.current) {
       setFormValid(formRef.current.checkValidity());
     }
   }, [formData, touched]);
 
+  // Resetea el formulario completo
   const resetFormulario = () => {
     setFormData({});
     setTouched({});
@@ -38,14 +47,18 @@ function ModalAddCoffee({ onSubmit, modalId, origins = [] }) {
     if (formRef.current) formRef.current.reset();
   };
 
+  // Maneja el envio del formulario
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    // Prepara datos con FormData para permitir archivos
     const form = new FormData();
     for (const key in formData) {
       form.append(key, formData[key]);
     }
-
+    // Ejecuta la función pasada por props
     onSubmit(form);
+    // Resetea estado y cierra el modal manualmente
     setFormData({});
     setTouched({});
     document
@@ -54,6 +67,7 @@ function ModalAddCoffee({ onSubmit, modalId, origins = [] }) {
       ?.click();
   };
 
+  // Limpia el formulario automáticamente cuando el modal se cierra
   useEffect(() => {
     const modalElement = document.getElementById(modalId);
     if (!modalElement) return;

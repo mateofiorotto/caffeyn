@@ -1,20 +1,27 @@
 import { useState, useRef, useEffect } from "react";
 
 function ModalAddOrigin({ onSubmit, modalId }) {
+  // Estado para almacenar los datos del formulario
   const [formData, setFormData] = useState({});
+  // Estado para rastrear qué campos han sido tocados (para validación visual)
   const [touched, setTouched] = useState({});
+  // Estado que indica si el formulario es válido
   const [formValid, setFormValid] = useState(false);
+  // Referencia al elemento <form>
   const formRef = useRef(null);
 
+  // Maneja los cambios en los inputs del formulario
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  // Marca el campo como tocado al perder el foco
   const handleBlur = (e) => {
     setTouched((prev) => ({ ...prev, [e.target.name]: true }));
   };
 
+  // Verifica si el campo es inválido para aplicar clase Bootstrap
   const validarCampo = (name) => {
     const el = formRef.current?.elements[name];
     if (!el) return "";
@@ -22,12 +29,14 @@ function ModalAddOrigin({ onSubmit, modalId }) {
     return !el.checkValidity() ? "is-invalid" : "";
   };
 
+  // Recalcula si el formulario es válido cada vez que cambia un dato o se toca un campo
   useEffect(() => {
     if (formRef.current) {
       setFormValid(formRef.current.checkValidity());
     }
   }, [formData, touched]);
 
+  // Limpia los datos y el estado del formulario
   const resetFormulario = () => {
     setFormData({});
     setTouched({});
@@ -35,6 +44,7 @@ function ModalAddOrigin({ onSubmit, modalId }) {
     if (formRef.current) formRef.current.reset();
   };
 
+  // Maneja el envío del formulario
   const handleSubmit = (e) => {
     e.preventDefault();
     onSubmit(formData);
@@ -46,6 +56,7 @@ function ModalAddOrigin({ onSubmit, modalId }) {
       ?.click();
   };
 
+  // Detecta cuando el modal se cierra para limpiar el formulario
   useEffect(() => {
     const modalElement = document.getElementById(modalId);
     if (!modalElement) return;
