@@ -1,7 +1,3 @@
-import { useContext } from "react";
-import { AuthContext } from "../utils/AuthContext";
-import { Link } from "react-router-dom";
-
 export function Home() {
   return (
     <section id="home">
