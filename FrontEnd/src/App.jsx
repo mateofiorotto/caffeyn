@@ -14,12 +14,45 @@ import Thanks from './views/Thanks';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { useEffect } from 'react';
+import { fetchUserProfile } from "./services/api";
+
 
 function App() {
-
   useEffect(() => {
     AOS.init({ once: false });
   }, []);
+
+  useEffect(() => {
+  const verificarToken = async () => {
+    const token = localStorage.getItem("token");
+    
+    if (!token) return;
+
+    try {
+      const profile = await fetchUserProfile(token);
+      // si el perfil no existe, se borra el token del localStorage
+      if (!profile) {
+        localStorage.removeItem("token");
+        //si el usuario esta en el CRUD mandar al login, si no recargar la pagina para que se cierra la sesion
+        if (window.location.pathname.startsWith('/admin')) {
+          window.location.href = "/";
+        } else {
+          window.location.reload();
+        }
+      }
+    } catch (error) {
+      console.error("Error al verificar el perfil:", error);
+      localStorage.removeItem("token");
+      if (window.location.pathname.startsWith('/admin')) {
+          window.location.href = "/";
+        } else {
+          window.location.reload();
+        }
+    }
+  };
+
+  verificarToken();
+}, []);
 
   return (
     <Router>

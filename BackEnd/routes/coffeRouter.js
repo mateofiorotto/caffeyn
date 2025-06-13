@@ -9,8 +9,8 @@ import { getCoffees, getCoffeeById, createCoffee, updateCoffee, deleteCoffee } f
 //definir rutas
 router.get("/", getCoffees);
 router.get("/:id", getCoffeeById);
-router.post("/", upload.single("image"), validarToken, esAdmin, createCoffee);
-router.put("/:id", upload.single('image'),validarToken, esAdmin, updateCoffee);
+router.post("/", validarToken, esAdmin, upload.single("image"), createCoffee);
+router.put("/:id", validarToken, esAdmin, upload.single("image"), updateCoffee);
 router.delete("/:id", validarToken, esAdmin, deleteCoffee);
 
 export default router;

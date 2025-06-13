@@ -108,9 +108,7 @@ Se utilizan useState para secciones del crud, para la autenticacion, las vistas 
     Una vez que npm te de la ip, entra y ya podes probar la app.
 
 ### Por hacer
-- Hacer que el usuario se desloguee cuando el token está vencido
 - Documentacion (comentarios front)
 - Estilos que puedan faltar
 - Etiquetas semanticas 
-- Carrito ?
 - cambiar api_url por .env

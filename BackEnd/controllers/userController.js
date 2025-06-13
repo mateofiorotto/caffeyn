@@ -246,7 +246,7 @@ export const register = async (req, res) => {
     const token = jwt.sign(
       { id: newUser._id, email: newUser.email, role: newUser.role },
       secretKey,
-      { expiresIn: '1d' }
+      { expiresIn: '1h' }
     );
 
     // No devolver la contraseña en la respuesta

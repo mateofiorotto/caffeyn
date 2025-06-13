@@ -77,8 +77,8 @@ export const getCoffeeById = async (req, res) => {
 
 // POST
 export const createCoffee = async (req, res) => {
-  console.log("📩 req.body:", req.body);
-console.log("📦 req.file:", req.file);
+  console.log("req.body:", req.body);
+console.log("req.file:", req.file);
 
   const {
     name,
@@ -171,7 +171,7 @@ export const updateCoffee = async (req, res) => {
       const oldImagePath = path.join(imgDir, existingCoffee.image);
       if (fs.existsSync(oldImagePath)) {
         fs.unlinkSync(oldImagePath);
-        console.log("🧹 Imagen anterior eliminada:", existingCoffee.image);
+        console.log("Imagen anterior eliminada:", existingCoffee.image);
       }
     }
 
