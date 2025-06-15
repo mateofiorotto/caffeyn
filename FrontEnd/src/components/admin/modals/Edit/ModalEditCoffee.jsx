@@ -91,7 +91,7 @@ function ModalEditCoffee({
       <div className="modal-dialog modal-lg">
         <div className="modal-content bg-dark text-light">
           <div className="modal-header">
-            <h5 className="modal-title">Editar Café</h5>
+            <h3 className="modal-title">Editar Café</h3>
             <button
               type="button"
               className="btn-close btn-close-white"

@@ -27,6 +27,7 @@ function Details() {
   if (!cafe) return <p className="fw-bold text-center pt-5 pb-5 mt-5 pb-5 mb-5 fs-2">Cargando café...</p>;
 
   return (
+    <section className="detalles-cafe">
     <div className="container mt-5 mb-5">
       <Coffee
         name={cafe.name}
@@ -38,6 +39,7 @@ function Details() {
         origin={cafe.origin}
       />
     </div>
+    </section>
   );
 }
 

@@ -85,7 +85,7 @@ function ModalAddCoffee({ onSubmit, modalId, origins = [] }) {
       <div className="modal-dialog modal-lg">
         <div className="modal-content bg-dark text-light">
           <div className="modal-header">
-            <h5 className="modal-title">Agregar Café</h5>
+            <h3 className="modal-title">Agregar Café</h3>
             <button
               type="button"
               className="btn-close btn-close-white"

@@ -35,7 +35,13 @@ label {
 
 
 h2 {
-  font-size: 1.75em;
+  font-size: 1.75em !important;
+  font-weight: bold !important;
+  text-transform: uppercase !important;
+}
+
+h3 {
+  font-size: 1.65em !important;
   font-weight: bold !important;
   text-transform: uppercase !important;
 }

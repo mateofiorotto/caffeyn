@@ -34,7 +34,7 @@ function Coffees() {
           </div>
         ))
       ) : (
-        <p>No hay cafés disponibles.</p>
+        <p className="text-center">No hay cafés disponibles.</p>
       )}
     </div>
     </section>

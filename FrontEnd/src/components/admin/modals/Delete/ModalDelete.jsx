@@ -25,7 +25,7 @@ function ModalDelete({ modalId, type, itemName, onConfirm }) {
       <div className="modal-dialog modal-lg modal-dialog-centered">
         <div className="modal-content bg-dark text-light">
           <div className="modal-header">
-            <h5 className="modal-title text-danger">Confirmar Eliminación</h5>
+            <h3 className="modal-title text-danger">Confirmar Eliminación</h3>
             <button
               type="button"
               className="btn-close btn-close-white"

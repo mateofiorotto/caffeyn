@@ -61,8 +61,6 @@ Se conecta la API con desde el front con el backend utilizando fetch.
 - Componentes Funcionales y Hooks: Utilizar componentes funcionales y hooks
 para la creación de componentes.
 
-
-
 - División de Componentes: Mantener una clara división de componentes.
 
 La web cuenta con division de componentes por ejemplo para las Card de cafes, la lista de cafes, el cafe individual, el navbar, footer, etc.
@@ -87,7 +85,7 @@ Se utilizan useState para secciones del crud, para la autenticacion, las vistas 
   cd caffeyn
   ```
 
-2. Colocar tu link o ip de base de datos, puerto y clave privada en .env (renombra .env.template en la carpeta de backend y pone el link a tu base de datos, sea de mongo atlas o local)
+2. Colocar tu link o ip de base de datos, puerto y clave privada en .env del backend (chequear .env.template). También poner la URL de la api en el .env del frontend (chequear .env.template)
 
 3. Entrar al backend, descargar dependencias y ejecutar el servidor local del backend
   ```
@@ -106,8 +104,3 @@ Se utilizan useState para secciones del crud, para la autenticacion, las vistas 
 4. Entrar a la web
 
     Una vez que npm te de la ip, entra y ya podes probar la app.
-
-### Por hacer
-- Documentacion (comentarios front)
-- Etiquetas semanticas 
-- cambiar api_url por .env

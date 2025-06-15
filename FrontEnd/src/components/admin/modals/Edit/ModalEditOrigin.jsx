@@ -36,12 +36,6 @@ function ModalEditOrigin({ onSubmit, modalId, initialData = {} }) {
     }
   }, [formData, touched]);
 
-  /* const resetFormulario = () => {
-    setFormData({});
-    setTouched({});
-    setFormValid(false);
-    if (formRef.current) formRef.current.reset();
-  }; */
 
   const handleSubmit = (e) => {
     e.preventDefault();

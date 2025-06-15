@@ -74,7 +74,7 @@ function ModalAddOrigin({ onSubmit, modalId }) {
       <div className="modal-dialog">
         <div className="modal-content bg-dark text-light">
           <div className="modal-header">
-            <h5 className="modal-title">Agregar Origen</h5>
+            <h3 className="modal-title">Agregar Origen</h3>
             <button
               type="button"
               className="btn-close btn-close-white"
