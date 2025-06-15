@@ -52,7 +52,10 @@ export async function register(name, email, password) {
   }
 
   // Si hay mensaje de error, lo devolvemos
-  return { error: data.msg || 'Error al registrar usuario' };
+  return { 
+    error: data.msg || 'Error al registrar usuario', 
+    errors: data.errors || null 
+  };
 }
 
 /**

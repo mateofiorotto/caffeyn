@@ -11,6 +11,7 @@ import Dashboard from './views/admin/Dashboard';
 import NotFound from './views/NotFound';
 import Home from './views/Home';
 import Thanks from './views/Thanks';
+import Buyed from './views/Buyed';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { useEffect } from 'react';
@@ -60,7 +61,6 @@ function App() {
         <Navbar />
       </header>
       <main>
-        {/* caffey | nombre de la vista*/}
         <h1 className="d-none">Caffeyn | Los mejores cafés</h1>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -72,6 +72,7 @@ function App() {
           <Route path="/details/:id" element={<Coffee />} />
           <Route path="/admin" element={<Dashboard />} />
           <Route path="/thanks" element={<Thanks />} />
+          <Route path="/buyed" element={<Buyed />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>

@@ -109,7 +109,5 @@ Se utilizan useState para secciones del crud, para la autenticacion, las vistas 
 
 ### Por hacer
 - Documentacion (comentarios front)
-- Estilos que puedan faltar
 - Etiquetas semanticas 
 - cambiar api_url por .env
-- quitar btn de agregar al carrito y hacer una simple vista "gracias x tu compra"

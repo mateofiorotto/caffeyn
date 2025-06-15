@@ -1,6 +1,6 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { login as loginAPI } from "../services/auth";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 
 function Login() {
@@ -9,6 +9,7 @@ function Login() {
   const [error, setError] = useState("");
   const navigate = useNavigate();
   const { login } = useContext(AuthContext);
+  const location = useLocation();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -22,11 +23,17 @@ function Login() {
     }
   };
 
+  useEffect(() => {
+  if (location.state?.error) {
+    setError(location.state.error);
+  }
+}, [location]);
+
   return (
     <section className="container d-flex justify-content-center pt-5 pb-5">
       <div data-aos="fade-up" className="card pt-5 p-4 bg-dark form-container text-light">
         <h2 className="text-center">Login</h2>
-        {error && <div className="alert alert-danger">{error}</div>}
+        {error && <div className="text-center mt-3 alert alert-danger">{error}</div>}
         <form className="p-5 pt-3" onSubmit={handleSubmit}>
           <div className="mb-4 mt-4">
             <label>Email</label>

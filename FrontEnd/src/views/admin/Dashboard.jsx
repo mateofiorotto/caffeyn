@@ -15,7 +15,6 @@ function Dashboard() {
   const [selectedTable, setSelectedTable] = useState("coffees");
   // Estado para evitar el "parpadeo" si el usuario no está autenticado
   const [isCheckingAuth, setIsCheckingAuth] = useState(true);
-
   const navigate = useNavigate();
 
   // Función que consulta todos los datos de las tres tablas
@@ -31,13 +30,19 @@ function Dashboard() {
 
     if (!user) {
       // Si no hay token o usuario inválido, redirige al login
-      navigate("/login", { replace: true });
+       navigate("/login", {
+        replace: true,
+        state: { error: "Debés iniciar sesión como administrador para acceder al panel." },
+      });
       return;
     }
 
     if (user.role !== "admin") {
       // Si el usuario no es admin, lo redirige al home
-      navigate("/", { replace: true });
+      navigate("/login", {
+        replace: true,
+        state: { error: "No tenés permisos para acceder al panel. Iniciá sesión como administrador." },
+      });
       return;
     }
 

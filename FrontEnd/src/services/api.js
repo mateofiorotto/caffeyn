@@ -16,6 +16,10 @@ export async function fetchCafeById(id) {
   const res = await fetch(`${API_URL}/coffees/${id}`);
   const json = await res.json();
   if (!res.ok) {
+    //error no se encontro
+    if (res.status === 404) {
+      throw new Error("404");
+    }
     throw new Error("No se pudo obtener el café");
   }
 

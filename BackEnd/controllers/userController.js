@@ -262,8 +262,16 @@ export const register = async (req, res) => {
   } catch (error) {
 
     if (error.name === "ValidationError") {
-      return res.status(400).json({ msg: "Error de validación", error: error.message });
-    }
+    const errors = {};
+    Object.values(error.errors).forEach((err) => {
+      errors[err.path] = err.message;
+    });
+
+    return res.status(400).json({
+      msg: "Error de validación",
+      errors
+    });
+  }
 
     console.log("Error details:", error);
     return res.status(500).json({ msg: "Ocurrió un error", error: error.message });

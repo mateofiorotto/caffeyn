@@ -9,23 +9,36 @@ function Register() {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
-  const res = await register(name, email, password);
-  if (res.token) {
-    saveToken(res.token);
-    navigate("/login");
-  } else {
-    setError(res.error || "Error al registrarse");
-  }
-};
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const res = await register(name, email, password);
+    if (res.token) {
+      saveToken(res.token);
+      navigate("/login");
+    } else {
+      console.log(res.error);
+      if (res.errors) {
+        const mensajes = [];
+        if (res.errors.name) mensajes.push(res.errors.name);
+        if (res.errors.email) mensajes.push(res.errors.email);
+        if (res.errors.password) mensajes.push(res.errors.password);
+        setError(mensajes.join(", "));
+      } else {
+        setError(res.error || "Error al registrarse");
+      }
+    }
+  };
 
   return (
     <section className="container d-flex justify-content-center pt-5 pb-5">
-      <div data-aos="fade-up"
-        className="card bg-dark text-light p-4 pt-5 form-container">
+      <div
+        data-aos="fade-up"
+        className="card bg-dark text-light p-4 pt-5 form-container"
+      >
         <h2 className="text-center">Registro</h2>
-        {error && <div className="alert alert-danger">{error}</div>}
+        {error && (
+          <div className="text-center mt-3 alert alert-danger">{error}</div>
+        )}
         <form className="p-5 pt-3" onSubmit={handleSubmit}>
           <div className="mb-4 mt-4">
             <label>Nombre</label>
@@ -57,7 +70,9 @@ const handleSubmit = async (e) => {
               required
             />
           </div>
-          <button type="submit" className="boton-form btn">Registrarse</button>
+          <button type="submit" className="boton-form btn">
+            Registrarse
+          </button>
         </form>
         <div>
           <p className="text-center mt-4">

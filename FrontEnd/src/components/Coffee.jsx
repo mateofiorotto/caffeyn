@@ -16,12 +16,9 @@ function Coffee({ name, description, price, roastLevel, flavorNote, image, origi
           </p>
         )}
 
-        <div className="row botones-detalles align-items-center justify-content-center mt-4">
+        <div className="row botones-detalles align-items-center justify-content-center align-items-lg-start justify-content-lg-start mt-4">
           <div className="col-lg-6 col-md-12 div-comprar">
-            <a href="/cart" className="d-block m-auto btn btn-comprar-ahora mt-3 mt-lg-0">Comprar ahora</a>
-          </div>
-           <div className="col-lg-6 col-md-12 div-agregar mt-4 mt-lg-0">
-            <a href="/cart" className="d-block m-auto btn btn-agregar-carrito">Agregar al carrito</a>
+            <a href="/buyed" className="d-block m-auto btn btn-comprar-ahora mt-3 mt-lg-0">Comprar ahora</a>
           </div>
         </div>
 
