@@ -12,12 +12,13 @@ function ModalDelete({ modalId, type, itemName, onConfirm }) {
     }
   };
 
-  const handleConfirm = () => {
-    onConfirm();
+  const handleConfirm = async () => {
+    await onConfirm();
     document
       .getElementById(modalId)
       ?.querySelector('[data-bs-dismiss="modal"]')
       ?.click();
+    window.location.reload();
   };
 
   return (

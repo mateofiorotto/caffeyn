@@ -180,9 +180,10 @@ export async function fetchUserProfile(token) {
 
 // Funcion para crear un nuevo usuario
 export async function createUser(data) {
+  const token = getToken();
   const res = await fetch(`${API_URL}/users`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
     body: JSON.stringify(data),
   });
   const json = await res.json();
